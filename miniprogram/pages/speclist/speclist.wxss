@@ -1,0 +1,22 @@
+/* pages/speclist/speclist.wxss */
+
+.prop_box{
+margin-bottom: 120rpx;
+}
+
+.item_prop{
+  width: 90%;
+  margin: 0rpx auto;
+  border-bottom: 1px #aeaeae solid;
+  height: 110rpx;
+}
+
+.prop_title{
+  font-size: 36rpx;
+}
+
+.prop_value{
+  font-size: 24rpx;
+  color: #AEAEAE;
+}
+

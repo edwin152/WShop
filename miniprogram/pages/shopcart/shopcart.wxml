@@ -1,0 +1,46 @@
+<!--pages/shopcart/shopcart.wxml-->
+<view class='shop_cart_box'>
+  <view class='shop_cart_list' wx:for="{{shopCartList}}" wx:key="shopCartList">
+    <view class="{{item.choose ? 'product_select' : 'product_not' }}">√</view>
+    <image class='shop_image' src='{{item.image_list[0]}}'></image>
+    <view class='shop_info'>
+      <view>
+        <view class='shop_name'>{{item.name}}</view>
+      </view>
+
+      <view class='shop_norms'>
+        <text class='norms_item'>{{item.prop_value_str}}</text>
+      </view>
+      <view class='shop_price'>¥{{item.retail_price}}</view>
+      <view class='shop_count' catchtap='editNumberShow' data-item-Index="{{index}}">数量：{{item.count}}</view>
+    </view>
+  </view>
+</view>
+<view class='bottom_util' wx:if="{{shopCartList != null && shopCartList.length > 0}}">
+  <!--合计  已省  -->
+  <view class='cart_price'>
+    <view class='heji'>
+      <text style='font-size:38rpx;'>合计:</text>
+      <text style='font-size:38rpx;'>¥{{cost_amount}}</text>
+    </view>
+  </view>
+  <!--关注  删除 结算  -->
+  <view class='bottom_util_button'>
+    <view class='subimt_order' catchtap='goPay'>结算</view>
+  </view>
+</view>
+<!-- 编辑购物车数量 -->
+<view class='dialog_bakcground' wx:if="{{editDialogIsShow}}">
+  <view class='dialog_box'>
+    <view class='dialog_title'>
+      编辑数量
+    </view>
+    <form bindsubmit='editNumber'>
+      <input class='dialog_input' type='number' name="count"></input>
+      <view class='button_box'>
+        <button catchtap='closeDialog' class='dialog_button'>取消</button>
+        <button form-type='submit' class='dialog_button'>确定</button>
+      </view>
+    </form>
+  </view>
+</view>

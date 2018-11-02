@@ -1,0 +1,12 @@
+/* pages/setting/setting.wxss */
+.option_box{
+  width: 90%;
+  margin: auto;
+}
+.option_item{
+  height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  border-bottom: 1px #EAEAEA solid;
+  
+}

@@ -1,0 +1,190 @@
+/* pages/shopcart/shopcart.wxss */
+
+.shop_cart_box {
+  margin-bottom: 140rpx;
+}
+
+.shop_cart_list {
+  width: 700rpx;
+  height: 240rpx;
+  /* box-shadow: 0rpx 0rpx 20rpx 0rpx #eee; */
+  margin: 30rpx auto;
+  border-radius: 10rpx;
+  position: relative;
+  padding: 40rpx 0rpx 0rpx 0rpx;
+}
+
+.product_select{
+  background: #000;
+  color: #FFF;
+  position: absolute;
+  left: 10rpx;
+  top: 120rpx;
+  width: 38rpx;
+  height: 38rpx;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  border: 1px #FFF solid;
+}
+
+.product_not{
+  background: #FFF;
+  color: #FFF;
+  position: absolute;
+  left: 10rpx;
+  top: 120rpx;
+  width: 38rpx;
+  height: 38rpx;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  border: 1px #000 solid;
+}
+
+.shop_image {
+  height: 178rpx;
+  width: 178rpx;
+  display: inline-block;
+  border-radius: 5rpx;
+  border: 1px #e8e8e8 solid;
+  position: absolute;
+  left: 70rpx;
+  top: 50rpx;
+}
+
+.shop_info {
+  display: inline-block;
+  width: 400rpx;
+  height: 180rpx;
+  margin: 10rpx auto 10rpx 280rpx;
+}
+
+.shop_name {
+  font-size: 32rpx;
+  min-height: 80rpx;
+  word-break: break-all;
+  display: -webkit-inline-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.shop_norms {
+  font-size: 28rpx;
+  word-break: break-all;
+  display: -webkit-inline-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.norms_item {
+  color: #aeaeae;
+}
+
+.shop_price {
+  color: #000000;
+  font-weight: 800rpx;
+  font-size: 32rpx;
+}
+
+.shop_count {
+  position: absolute;
+  right: 10rpx;
+  bottom: 40rpx;
+  border: 1px #e8e8e8 solid;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  padding: 5rpx 20rpx;
+  min-width: 100rpx;
+  text-align: center;
+}
+
+.bottom_util {
+  height: 110rpx;
+  z-index: 100;
+  width: 100%;
+  position: fixed;
+  bottom: 0rpx;
+  background: #fff;
+  border-top: 1px #e8e8e8 solid;
+}
+
+.cart_price {
+  position: absolute;
+  left: 0;
+  margin-left: 30rpx;
+}
+
+.heji text {
+  line-height: 110rpx;
+  font-size: 42rpx;
+  font-weight: 800;
+}
+
+.bottom_util_button {
+  height: 78rpx;
+  width: 200rpx;
+  background: #000;
+  /* border-radius: 50rpx; */
+  text-align: center;
+  position: absolute;
+  right: 30rpx;
+  top: 16rpx;
+}
+
+.subimt_order {
+  line-height: 78rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.dialog_bakcground {
+  background: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 101;
+}
+
+.dialog_box {
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 101;
+  width: 100%;
+}
+
+.dialog_title {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+  z-index: 101;
+}
+
+.dialog_input {
+  width: 80%;
+  height: 100rpx;
+  z-index: 101;
+  margin: 50rpx 10% 0rpx 10%;
+  border-bottom: 1px #000 solid;
+}
+
+.button_box {
+  width: 100%;
+  height: 100rpx;
+  margin-top: 50rpx;
+  z-index: 101;
+}
+
+.dialog_button {
+  width: 50%;
+  height: 100rpx;
+  text-align: center;
+  z-index: 101;
+  display: inline-block;
+}

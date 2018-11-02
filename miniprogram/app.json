@@ -1,13 +1,18 @@
 {
   "cloud": true,
   "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/shoplist/shoplist",
+    "pages/shopcart/shopcart",
+    "pages/orderlist/orderlist",
+    "pages/setting/setting",
+    "pages/product/product",
+    "pages/speclist/speclist",
+    "pages/editProp/editProp",
+    "pages/addproduct/addproduct",
+    "pages/editproduct/editproduct",
+    "pages/productList/productList",
+    "pages/managesku/managesku",
+    "pages/addsku/addsku"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -15,5 +20,29 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#B3B3B3",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#292929",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/shoplist/shoplist",
+        "text": "商品"
+      },
+      {
+        "pagePath": "pages/shopcart/shopcart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/orderlist/orderlist",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "更多"
+      }
+    ]
   }
 }

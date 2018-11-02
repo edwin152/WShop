@@ -1,0 +1,54 @@
+/* pages/editProp/editProp.wxss */
+
+.page_box {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 120rpx;
+}
+
+.prop_name_title, .prop_values {
+  height: 110rpx;
+  font-size: 36rpx;
+  line-height: 110rpx;
+  /* border-top: 1px #EAEAEA solid; */
+  border-bottom: 1px #eaeaea solid;
+}
+
+.edit_input_box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.edit_btn{
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-top: 20rpx;
+  text-align: center;
+  padding: 0rpx 10rpx;
+  margin-left: 20rpx;
+}
+
+.prop_input {
+  height: 60rpx;
+  font-size: 32rpx;
+  border: 1px #eaeaea solid;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+  padding-left: 10rpx;
+  flex:1;
+}
+
+.add_input {
+  height: 80rpx;
+  color: #aeaeae;
+  line-height: 80rpx;
+  text-align: center;
+  border: 1px #eaeaea solid;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+}
+
+.hide{
+  display: none;
+}

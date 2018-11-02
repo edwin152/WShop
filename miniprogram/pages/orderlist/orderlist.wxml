@@ -1,0 +1,12 @@
+<!--pages/orderlist/orderlist.wxml-->
+<view>
+  <view class='order_list' wx:for="{{orderList}}" wx:key="orderList">
+    <view class='order_id'>订单编号：
+      <text class='order_content'>{{item.id}}</text> </view>
+    <view>
+      <image  wx:for="{{item.skuList}}" wx:key="skuList" wx:for-item="sku" class='shop_image' src='{{sku.image_list[0]}}'></image>
+    </view>
+    <view>共{{item.skuList.length}}件商品</view>
+    <view>下单时间：{{item.create_time}}</view>
+  </view>
+</view>

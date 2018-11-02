@@ -1,7 +1,53 @@
 /**app.wxss**/
+
 .container {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
+view {
+  color: #292929;
+}
+
+text {
+  color: #292929;
+}
+
+.line {
+  height: 1px;
+  background: #e8e8e8;
+}
+
+.bottom_btn {
+  position: fixed;
+  bottom: 0rpx;
+  background: #fff;
+  /* border-top: 1px #E8E8E8 solid; */
+  width: 100%;
+  height: 120rpx;
+}
+
+.bottom_text {
+  /* background: #40ad00; *//* border-radius: 100rpx; */
+  height: 100rpx;
+  width: 90%;
+  margin: 10rpx auto;
+  text-align: center;
+  line-height: 100rpx;
+  color: #292929;
+  background: #fff;
+  font-size: 42rpx;
+}
+
+button::after {
+  border: none;
+}
+
+button{
+  background: #FFF;
+}

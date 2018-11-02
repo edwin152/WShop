@@ -1,0 +1,30 @@
+<!--pages/addproduct/addproduct.wxml-->
+<view>
+  <view class='title'>商品图片</view>
+  <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}">
+    <swiper-item></swiper-item>
+  </swiper>
+  <view class='upload_iamge'> 上传图片</view>
+  <view class='line'></view>
+
+  <view class='title'>商品名称</view>
+  <view class='product_name'>
+    <input class='input_name' placeholder="请输入商品名称" bindinput='inputName'></input>
+  </view>
+
+  <view class='line'></view>
+  <view class='title'>商品规格</view>
+  <view wx:for="{{propList}}" wx:key="propList" wx:for-item="prop_item" wx:for-index="propIndex" class='prop_box'>
+    <view class="{{prop_item.isSelect ? 'prop_select' : 'prop_none'}}" catchtap='clickProp' data-prop-Id="{{propIndex}}">{{prop_item.name}}</view>
+    <!-- <view class='prop_item_box'>
+      <view class="{{item.isSelect ? 'prop_item_select' : 'prop_item_none'}}" wx:for="{{prop.values}}" wx:key="values" catchtap='clickPropItem'>{{item.name}}</view>
+    </view> -->
+    <view class='line'></view>
+  </view>
+
+  <view class='emty_view'></view>
+</view>
+
+<view class='bottom_btn'>
+  <view catchtap='submit' class='bottom_text'>保存</view>
+</view>

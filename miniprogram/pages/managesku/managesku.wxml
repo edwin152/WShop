@@ -1,0 +1,8 @@
+<!--pages/managesku/managesku.wxml-->
+<view class='skus_box'>
+  <view class='skus' wx:for="{{skus}}"></view>
+</view>
+
+<view class='bottom_btn'>
+  <view catchtap='addSku' class='bottom_text'>新增</view>
+</view>

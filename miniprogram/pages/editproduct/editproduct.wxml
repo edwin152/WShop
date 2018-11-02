@@ -1,0 +1,19 @@
+<!--pages/editproduct/editproduct.wxml-->
+<view>
+  <view class='title'>商品图片</view>
+  <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}">
+    <swiper-item></swiper-item>
+  </swiper>
+  <view class='upload_iamge'> 上传图片</view>
+  <view class='line'></view>
+
+  <view class='title'>商品名称</view>
+  <view class='product_name'>
+    <input class='input_name' placeholder="请输入商品名称" bindinput='inputName' value='{{product.name}}'></input>
+  </view>
+  <view class='emty_view'></view>
+</view>
+
+<view class='bottom_btn'>
+  <view catchtap='submit' class='bottom_text'>保存</view>
+</view>

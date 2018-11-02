@@ -1,0 +1,15 @@
+<!--pages/setting/setting.wxml-->
+<view class='option_box'>
+  <view class='option_item'>
+    <view catchtap='specListPage'>规格管理</view>
+  </view>
+  <view class='option_item'>
+    <view catchtap='addProduct'>添加商品</view>
+  </view>
+  <view class='option_item'>
+    <view catchtap='productList'>商品管理</view>
+  </view>
+  <!-- <view class='option_item'>
+    <view catchtap='stockManage'>库存管理</view>
+  </view> -->
+</view>
