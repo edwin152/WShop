@@ -1,5 +1,6 @@
 module.exports = {
   baseRequest: baseRequest,
+  baseCloud: baseCloud,
 }
 
 var serviceUrl = "http://localhost:8080/shop/"
@@ -71,4 +72,49 @@ function baseRequest(params) {
     }
   })
 
+}
+
+
+function baseCloud(e) {
+
+  // 判断是否有start回调
+  if (e.hasOwnProperty("onStart") && typeof("e.onStart") == "function") {
+    e.onStart()
+  }
+  console.log("开始请求参数", e)
+
+  wx.cloud.callFunction({
+    name: e.fun,
+    data: {
+      name: e.url,
+      data: e.params
+    },
+    success: function(res) {
+      console.log("连接成功回调：",res)
+      if (e.hasOwnProperty("onComplete")) {
+        e.onComplete()
+      }
+      if (res.result.code == 1) {
+        if (e.hasOwnProperty("onSuccess")) {
+          e.onSuccess(res.result)
+        }
+      } else {
+        if (e.hasOwnProperty("onError")) {
+          e.onError(res.result)
+        }
+      }
+    },
+    fail: function(res) {
+      console.log("连接失败回调：", res)
+      if (e.hasOwnProperty("onComplete")) {
+        e.onComplete()
+      }
+      if (e.hasOwnProperty("onError")) {
+        e.onError({
+          msg: "网络异常，请重试",
+          code: '-2'
+        })
+      }
+    }
+  })
 }
