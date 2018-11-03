@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    product:{}
+    product:{},
+    productName: "",
   },
 
   /**
@@ -13,9 +14,12 @@ Page({
    */
   onLoad: function(options) {
     var productStr = options.product
+    var productBean = JSON.parse(productStr)
     this.setData({
-      product: JSON.parse(productStr)
+      product: productBean,
+      productName: productBean.name
     })
+
   },
 
   /**
@@ -79,43 +83,96 @@ Page({
    * 保存商品
    */
   submit: function(e) {
-    var propList = this.data.propList
-    var selectList = []
-    for (var i = 0; i < propList.length; i++) {
-      if (propList[i].isSelect) {
-        selectList.push(propList[i].id)
-      }
+    if (this.data.productName.length <= 0) {
+      wx.showToast({
+        title: '未更改名称',
+        icon: "none"
+      })
+      return
     }
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        prop_list: selectList,
+        _id: thisPage.product._id,
         name: thisPage.data.productName,
-        image_list: thisPage.data.images
+        image_list: thisPage.data.product.imagesList
       },
-      url: "product/createProduct.do",
-      onStart: function() {
+      fun: "product",
+      url: "editProduct",
+      onStart: function () {
         wx.showLoading({
           title: '',
         })
       },
-      onSuccess: function(res) {
+      onSuccess: function (res) {
         // console.log(res.data)
+        wx.showToast({
+          title: '保存成功',
+          icon: "none"
+        })
         wx.navigateBack({
 
         })
       },
-      onError: function(res) {
+      onError: function (res) {
         console.log(res)
         wx.showToast({
           title: res.msg,
           icon: "none"
         })
       },
-      onComplete: function() {
+      onComplete: function () {
         wx.hideLoading()
-        wx.stopPullDownRefresh()
       }
     })
-  }
+  },
+  /**
+   * 上传图片
+   */
+  uploadProductImage: function () {
+    let thisPage = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: "original",
+      sourceType: "album",
+      success: function (res) {
+        wx.showLoading({
+          title: '上传中',
+        })
+        const filePath = res.tempFilePaths[0]
+        // 上传图片
+        const cloudPath = new Date().getTime() + filePath.match(/\.[^.]+?$/)[0]
+
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath,
+          success: res => {
+            // 获取图片地址
+            var imageUrl = res.fileID
+            var imageList = thisPage.data.product.imagesList
+            imageList.push(imageUrl)
+            thisPage.setData({
+              ["product.imagesList"]: imageList
+            })
+            wx.hideLoading()
+
+          },
+          fail: e => {
+            console.error('[上传文件] 失败：', e)
+            wx.hideLoading()
+            wx.showToast({
+              title: '上传失败，请重试',
+              icon: "none"
+            })
+          },
+          complete: () => {
+          }
+        })
+      },
+      fail: function () {
+
+      }
+    })
+
+  },
 })

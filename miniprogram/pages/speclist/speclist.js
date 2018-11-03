@@ -69,10 +69,11 @@ Page({
    */
   getSpecList() {
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
       },
-      url: "prop/getAllProp.do",
+      fun: "prop",
+      url: "getAllProp",
       onStart: function() {
         wx.showLoading({
           title: '',

@@ -1,0 +1,29 @@
+<!--pages/editSku/editSku.wxml-->
+<form bindsubmit='saveProductInfo'>
+  <view class='title' wx:if="{{skus.prop_value_list.length > 0}}">商品规格</view>
+  <view class='prop_box'  wx:for="{{skus.prop_value_list}}" wx:key="values"  >
+    <view class="prop_select">{{product.prop_list[index].name}} ： <text class="prop_item_none">{{item.name}}</text></view>
+
+  </view>
+
+  <view class='stock_info_box'>
+    <view class='title'>商品信息</view>
+    <view class='input_box'>
+      <view class='input_title'>批发价格</view>
+      <input class='input' name="tradePrice" placeholder='{{skus.trade_price}}'></input>
+    </view>
+    <view class='input_box'>
+      <view class='input_title'>商品价格</view>
+      <input class='input' name="retailPrice"  placeholder='{{skus.retail_price}}'></input>
+    </view>
+    <view class='input_box'>
+      <view class='input_title'>库存数量</view>
+      <input class='input' name="stockCount" placeholder='{{skus.stock_count}}'></input>
+    </view>
+    <view class='bottom_btn'>
+      <button catchtap='submit' form-type='submit' class='bottom_text'>保存</button>
+    </view>
+  </view>
+
+
+</form>

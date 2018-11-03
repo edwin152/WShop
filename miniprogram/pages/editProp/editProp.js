@@ -148,12 +148,26 @@ Page({
     if (!e.currentTarget.dataset.id) {
       return
     }
+    // wx.cloud.callFunction({
+    //   name: "prop",
+    //   data: {
+    //     name: "deleteProp",
+    //     data: {
+    //       _id: e.currentTarget.dataset.id,
+    //     }
+    //   },
+    //   success: function(res){
+    //     console.log(res)
+    //   }
+    // })
+
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        id: e.currentTarget.dataset.id
+        _id: e.currentTarget.dataset.id
       },
-      url: "prop/deleteProp.do",
+      fun: "prop",
+      url: "deleteProp",
       onStart() {
         wx.showLoading({
           title: '',
@@ -185,11 +199,12 @@ Page({
       return
     }
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        id: e.currentTarget.dataset.id
+        _id: e.currentTarget.dataset.id
       },
-      url: "prop/deletePropValue.do",
+      fun: "prop",
+      url: "deletePropValue",
       onStart() {
         wx.showLoading({
           title: '',
@@ -248,11 +263,12 @@ Page({
    */
   addProp: function(name) {
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
         name: name
       },
-      url: "prop/createProp.do",
+      fun: "prop",
+      url: "createProp",
       onStart() {
         wx.showLoading({
           title: '',
@@ -279,14 +295,16 @@ Page({
   /**
    * 编辑规格名称
    */
-  editProp: function(id, name) {
+  editProp: function (id, name) {
+
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        id: id,
+        _id: id,
         name: name
       },
-      url: "prop/editProp.do",
+      fun: "prop",
+      url: "editProp",
       onStart() {
         wx.showLoading({
           title: '',
@@ -310,23 +328,24 @@ Page({
   /**
    * 添加规格值
    */
-  addPropValue: function(name) {
+  addPropValue: function (name) {
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        prop_id: thisPage.data.prop.id,
+        prop_id: thisPage.data.prop._id,
         name: name
       },
-      url: "prop/createPropValue.do",
+      fun: "prop",
+      url: "createPropValue",
       onStart() {
         wx.showLoading({
           title: '',
         })
       },
       onSuccess: function(res) {
-        // var bean = res.data
+        // var bean = res.result
         // thisPage.setData({
-        //   prop: res.data
+        //   prop: res.result
         // })
         wx.showToast({
           title: '保存成功',
@@ -345,23 +364,24 @@ Page({
   /**
    * 编辑规格值
    */
-  editPropValue: function(id, name) {
+  editPropValue: function (id, name) {
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        id: id,
+        _id: id,
         name: name
       },
-      url: "prop/editPropValue.do",
+      fun: "prop",
+      url: "editPropValue",
       onStart() {
         wx.showLoading({
           title: '',
         })
       },
       onSuccess: function(res) {
-        // var bean = res.data
+        // var bean = res.result
         // thisPage.setData({
-        //   prop: res.data
+        //   prop: res.result
         // })
         wx.showToast({
           title: '保存成功',

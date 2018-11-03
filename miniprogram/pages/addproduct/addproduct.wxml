@@ -2,9 +2,12 @@
 <view>
   <view class='title'>商品图片</view>
   <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}">
-    <swiper-item></swiper-item>
+    <swiper-item wx:for="{{imagesList}}" wx:key="imagesList" >
+      <image class='product_image' src="{{item}}" mode='aspectFit'></image>
+    </swiper-item>
   </swiper>
-  <view class='upload_iamge'> 上传图片</view>
+  <view class='upload_iamge' catchtap='uploadProductImage'> 上传图片</view>
+
   <view class='line'></view>
 
   <view class='title'>商品名称</view>

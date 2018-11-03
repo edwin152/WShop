@@ -12,7 +12,8 @@
     "pages/editproduct/editproduct",
     "pages/productList/productList",
     "pages/managesku/managesku",
-    "pages/addsku/addsku"
+    "pages/addsku/addsku",
+    "pages/editSku/editSku"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

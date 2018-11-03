@@ -69,11 +69,11 @@ Page({
    */
   getProductList: function(){
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        name: ""
       },
-      url: "product/searchProduct.do",
+      fun: "product",
+      url: "getAllProduct",
       onStart() {
         wx.showLoading({
           title: '',
@@ -102,11 +102,57 @@ Page({
       url: '../editproduct/editproduct?product=' + productStr,
     })
   },
+  /**
+   * 管理库存
+   */
   manageStock: function(e){
     var product = this.data.productList[e.currentTarget.dataset.index]
     var productStr = JSON.stringify(product)
     wx.navigateTo({
       url: '../managesku/managesku?product=' + productStr,
+    })
+  },
+
+  /**
+   * 删除商品
+   */
+  deleteProduct: function (e) {
+    let thisPage = this
+    wx.showModal({
+      title: '删除商品',
+      content: '删除后不可恢复，确定删除吗？',
+      success: function(res){
+        if (res.confirm){
+          var id = e.currentTarget.dataset.productId
+          request.baseCloud({
+            params: {
+              _id: id
+            },
+            fun: "product",
+            url: "deleteProduct",
+            onStart() {
+              wx.showLoading({
+                title: '',
+              })
+            },
+            onSuccess: function (res) {
+              thisPage.getProductList()
+            },
+            onError: function (res) {
+              console.log(res.msg)
+            },
+            onComplete: function () {
+              wx.hideLoading()
+            }
+          })
+        }
+      },
+      fail: function(){
+        wx.showToast({
+          title: '出错了，请重试',
+          icon: "none"
+        })
+      }
     })
   }
 })

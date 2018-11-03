@@ -10,10 +10,17 @@
   <view class='shop_list_box'>
     <view class='gone_line'></view>
     <view class='shop_item' wx:for="{{shopList}}" wx:key="shopList" catchtap='productDetail' data-index='{{index}}'>
-      <image class='shop_item_image' src='{{item.images[0]}}'></image>
+      <image class='shop_item_image' src='{{item.image_list[0]}}' mode='aspectFill'></image>
       <view class='shop_item_name'>{{item.name}}</view>
       <view class='shop_item_price'>
         <text class='price_title'>¥</text>{{item.defaultSku.retail_price}}</view>
     </view>
+  </view>
+</view>
+
+<view class='login_dialog_backgound' wx:if="{{loginDialog}}">
+  <view class='login_dialog_box'>
+    <view class='dialog_title'>请授权登录</view>
+    <button open-type='getUserInfo' bindgetuserinfo='userLogin' class='login_button'>去授权</button>
   </view>
 </view>

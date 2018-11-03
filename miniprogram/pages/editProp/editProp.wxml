@@ -5,19 +5,19 @@
     <view class='edit_input_box'>
       <input class='prop_input' placeholder="{{prop.name}}" name="title"></input>
       <button class='edit_btn' form-type='submit'>保存</button>
-      <button class='edit_btn' catchtap='deleteProp'data-id="{{prop.id}}">删除</button>
+      <button class='edit_btn' catchtap='deleteProp'data-id="{{prop._id}}">删除</button>
     </view>
   </form>
-  <view wx:if="{{prop.id}}">
+  <view wx:if="{{prop._id}}">
     <view class='prop_values'>
       规格
     </view>
     <form bindsubmit='saveValue'>
       <view class='edit_input_box' wx:for="{{prop.values}}" wx:key="values">
         <input class='prop_input' name="value" placeholder='{{item.name}}'></input>
-        <input class='hide' name="id" value='{{item.id}}'></input>
+        <input class='hide' name="id" value='{{item._id}}'></input>
         <button form-type='submit' class='edit_btn'>保存</button>
-        <button class='edit_btn' catchtap='deletePropValue' data-id="{{item.id}}" data-item-Index="{{index}}">删除</button>
+        <button class='edit_btn' catchtap='deletePropValue' data-id="{{item._id}}" data-item-Index="{{index}}">删除</button>
       </view>
     </form>
 

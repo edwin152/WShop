@@ -18,11 +18,17 @@ Page({
   onLoad: function(options) {
     var productStr = options.product
     var product = JSON.parse(productStr)
+    var isHave = false
+    if (!product.prop_list || product.prop_list.length == 0) {
+      isHave = true
+    }
     this.setData({
       product: product,
+      props: product.prop_list,
+      isSelectComplete: isHave
     })
 
-    this.getPropValues(product)
+    // this.getPropValues(product)
     this.isAdd = false
 
 
@@ -82,7 +88,7 @@ Page({
   getPropValues: function(product) {
     var list = []
     for (var i = 0; i < product.props.length; i++) {
-      list.push(product.props[i].id)
+      list.push(product.props[i]._id)
     }
     var propList = "[" + list.toString() + "]"
     var thisPage = this
@@ -155,26 +161,27 @@ Page({
    */
   saveProductInfo: function(e) {
     var propValues = []
-    for (var i = 0; i < this.data.props.length; i ++){
-      for (var j = 0; j < this.data.props[i].values.length; j++){
-        if (this.data.props[i].values[j].isSelect){
-          propValues.push(this.data.props[i].values[j].id)
+    for (var i = 0; i < this.data.props.length; i++) {
+      for (var j = 0; j < this.data.props[i].values.length; j++) {
+        if (this.data.props[i].values[j].isSelect) {
+          propValues.push(this.data.props[i].values[j]._id)
           break
         }
       }
     }
-    var propSelectStr = "[" + propValues.toString() + "]"
+    // var propSelectStr = "[" + propValues.toString() + "]"
 
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        product_id: thisPage.data.product.id,
+        product_id: thisPage.data.product._id,
         trade_price: e.detail.value.tradePrice,
         retail_price: e.detail.value.retailPrice,
         stock_count: e.detail.value.stockCount,
-        prop_value_list: propSelectStr
+        prop_value_list: propValues
       },
-      url: "product/createSku.do",
+      fun: "product",
+      url: "createSku",
       onStart: function() {
         wx.showLoading({
           title: '',

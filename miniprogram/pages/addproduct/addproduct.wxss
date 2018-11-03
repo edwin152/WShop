@@ -1,71 +1,73 @@
 /* pages/addproduct/addproduct.wxss */
 
-.title{
+.title {
   width: 100%;
   font-size: 40rpx;
   padding-left: 20rpx;
   height: 80rpx;
   line-height: 80rpx;
 }
-.images_box{
+
+.images_box {
   width: 100%;
   height: 100vw;
-  background: #AEAEAE;
+  background: #aeaeae;
 }
 
-.line{
+.line {
   height: 1px;
-  background: #000000;
+  background: #000;
   margin: 20rpx 0rpx;
 }
 
-.upload_iamge{
+.upload_iamge {
   width: 80%;
   height: 90rpx;
   line-height: 90rpx;
   margin: 0rpx auto;
-  border: 1px #000000 solid;
+  border: 1px #000 solid;
   text-align: center;
 }
-.product_name{
+
+.product_name {
   width: 80%;
   height: 90rpx;
   line-height: 90rpx;
   margin: 20rpx auto 0rpx auto;
-  border: 1px #000000 solid;
+  border: 1px #000 solid;
 }
-.input_name{
+
+.input_name {
   text-align: center;
   height: 90rpx;
   line-height: 90rpx;
-  
 }
 
-.prop_box{
+.prop_box {
   width: 80%;
   margin: 20rpx auto 0rpx auto;
 }
 
-.prop_select{
+.prop_select {
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  color: #FFFFFF;
+  color: #fff;
   font-size: 36rpx;
-  background: #000000;
-  border: 1px #000000 solid;
+  background: #000;
+  border: 1px #000 solid;
 }
 
-.prop_none{
+.prop_none {
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  color: #000000;
+  color: #000;
   font-size: 36rpx;
-  border: 1px #000000 solid;
+  border: 1px #000 solid;
 }
 
-.prop_item_box{
+.prop_item_box {
   margin-top: 10rpx;
   width: 100%;
 }
@@ -91,3 +93,12 @@
   border: 1px #000000 solid;
 } */
 
+.product_image {
+  width: 100vw;
+  height: 100vw;
+}
+
+.emty_view{
+  width: 100%;
+  height: 200rpx;
+}

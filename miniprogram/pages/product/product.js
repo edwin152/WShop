@@ -137,7 +137,7 @@ Page({
 
     // console.log(this.data.productBean.skus[propSelectStr])
 
-    var shopCartParms = "{ \"skuId\": \"" + this.data.productBean.skus[propSelectStr].id + "\", \"count\": \"" + this.data.productCount + "\", \"choose\": true }"
+    var shopCartParms = "{ \"skuId\": \"" + this.data.productBean.sku_list[propSelectStr].id + "\", \"count\": \"" + this.data.productCount + "\", \"choose\": true }"
     console.log(shopCartParms)
 
     var thisPage = this

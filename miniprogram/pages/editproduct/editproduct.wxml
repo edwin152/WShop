@@ -4,7 +4,7 @@
   <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}">
     <swiper-item></swiper-item>
   </swiper>
-  <view class='upload_iamge'> 上传图片</view>
+  <view class='upload_iamge' catchtap='uploadProductImage'> 上传图片</view>
   <view class='line'></view>
 
   <view class='title'>商品名称</view>
