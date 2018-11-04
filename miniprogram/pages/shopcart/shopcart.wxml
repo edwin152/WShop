@@ -22,7 +22,7 @@
   <view class='cart_price'>
     <view class='heji'>
       <text style='font-size:38rpx;'>合计:</text>
-      <text style='font-size:38rpx;'>¥{{cost_amount}}</text>
+      <text style='font-size:38rpx;'>¥{{totalRetailPrice}}</text>
     </view>
   </view>
   <!--关注  删除 结算  -->

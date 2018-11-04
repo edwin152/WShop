@@ -126,9 +126,6 @@ Page({
             thisPage.setData({
               loginDialog: false
             })
-            wx.showTabBar({
-
-            })
           },
           onError: function (res) {
             console.log(res)
@@ -156,9 +153,6 @@ Page({
         // res.authSetting.scope.userInfo
         if (res.authSetting["scope.userInfo"])
           return
-        wx.hideTabBar({
-
-        })
         thisPage.setData({
           loginDialog: true
         })

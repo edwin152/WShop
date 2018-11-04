@@ -54,7 +54,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getOrderData()
   },
 
   /**
@@ -91,6 +91,7 @@ Page({
       },
       onComplete: function () {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -125,9 +126,6 @@ Page({
             thisPage.setData({
               loginDialog: false
             })
-            wx.showTabBar({
-
-            })
           },
           onError: function (res) {
             console.log(res)
@@ -155,9 +153,6 @@ Page({
         // res.authSetting.scope.userInfo
         if (res.authSetting["scope.userInfo"])
           return
-        wx.hideTabBar({
-
-        })
         thisPage.setData({
           loginDialog: true
         })

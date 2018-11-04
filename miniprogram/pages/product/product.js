@@ -13,18 +13,7 @@ Page({
   data: {
     // 正在显示的商品图片
     showProductImageNumber: 1,
-    productBean: {
-      listImage: [
-        "http://img.hhealth.cn/hm/static/public/goods/xc/1529373676944/1529373677320480720.jpg",
-        "http://img.hhealth.cn/hm/static/public/goods/xc/1529373676944/1529373677320480720.jpg",
-        "http://img.hhealth.cn/hm/static/public/goods/xc/1529373676944/1529373677320480720.jpg",
-        "http://img.hhealth.cn/hm/static/public/goods/xc/1529373676944/1529373677320480720.jpg",
-        "http://img.hhealth.cn/hm/static/public/goods/xc/1529373676944/1529373677320480720.jpg",
-      ],
-      name: "益普利生维生素C咀嚼片100片",
-      price: "55.00",
-      stock: "1000"
-    },
+    productBean: {},
     productCount: 1
   },
 
@@ -378,9 +367,6 @@ Page({
             thisPage.setData({
               loginDialog: false
             })
-            wx.showTabBar({
-
-            })
           },
           onError: function (res) {
             console.log(res)
@@ -408,9 +394,6 @@ Page({
         // res.authSetting.scope.userInfo
         if (res.authSetting["scope.userInfo"])
           return
-        wx.hideTabBar({
-
-        })
         thisPage.setData({
           loginDialog: true
         })

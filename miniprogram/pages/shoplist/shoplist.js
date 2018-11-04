@@ -54,6 +54,7 @@ Page({
    */
   onPullDownRefresh: function() {
 
+    this.getProductList()
   },
 
   /**
@@ -97,12 +98,6 @@ Page({
       isInput: false
     })
   },
-  /**
-   * 搜索商品
-   */
-  searchProduct: function(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value.search)
-  },
 
   /**
    * 获取商品列表
@@ -128,6 +123,7 @@ Page({
       },
       onComplete: function() {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -161,9 +157,6 @@ Page({
             thisPage.setData({
               loginDialog: false
             })
-            wx.showTabBar({
-
-            })
           },
           onError: function (res) {
             console.log(res)
@@ -191,13 +184,37 @@ Page({
         // res.authSetting.scope.userInfo
         if (res.authSetting["scope.userInfo"])
           return
-        wx.hideTabBar({
-
-        })
         thisPage.setData({
           loginDialog: true
         })
       }
+    })
+  },
+  
+  /**
+   * 订单列表
+   */
+  leftButton: function(e){
+    wx.navigateTo({
+      url: '/pages/orderlist/orderlist',
+    })
+  },
+
+  /**
+   * 设置
+   */
+  titleButton: function (e) {
+    wx.navigateTo({
+      url: '/pages/setting/setting',
+    })
+  },
+
+  /**
+   * 订单列表
+   */
+  rightButton: function (e) {
+    wx.navigateTo({
+      url: '/pages/shopcart/shopcart',
     })
   }
 })

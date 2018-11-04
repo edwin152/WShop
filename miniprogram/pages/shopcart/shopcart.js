@@ -8,7 +8,8 @@ Page({
    */
   data: {
     editDialogIsShow: false,
-    shopCartList: []
+    shopCartList: [],
+    totalRetailPrice: ""
   },
 
   /**
@@ -50,7 +51,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.getShopCartInfo()
   },
 
   /**
@@ -82,9 +83,10 @@ Page({
         })
       },
       onSuccess: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
         thisPage.setData({
-          shopCartList: res.data
+          shopCartList: res.data.shop_cart_list,
+          totalRetailPrice: res.data.total_retail_price
         })
       },
       onError: function(res) {
@@ -134,67 +136,44 @@ Page({
       return
     }
     this.editCartInfo(bean.sku_id, productCount, bean.choosen)
-    // var shopCartStr = "{ \"sku\": \"" + bean.skus[propSelectStr].id + "\", \"count\": \"" + productCount + "\", \"choose\": true }"
-    // var thisPage = this
-    // request.baseCloud({
-    //   params: {
-    //     sku_id: bean.sku_id,
-    //     count: productCount,
-    //     choosen: bean.choosen
-    //   },
-    //   fun: "user",
-    //   url: "editCart",
-    //   onStart: function() {
-    //     wx.showLoading({
-    //       title: '',
-    //     })
-    //   },
-    //   onSuccess: function(res) {
-    //     console.log(res.data)
-    //     thisPage.setData({
-    //       editDialogIsShow: false,
-    //       shopCartList: res.data
-    //     })
-    //   },
-    //   onError: function(res) {
-    //     console.log(res)
-    //     wx.showToast({
-    //       title: res.msg,
-    //       icon: "none"
-    //     })
-    //   },
-    //   onComplete: function() {
-    //     wx.hideLoading()
-    //   }
-    // })
 
   },
 
+  /**
+   * 生成订单
+   */
   goPay: function() {
     var thisPage = this
-    request.baseRequest({
-      params: {},
-      url: "order/createOrder.do",
-      onStart: function() {
+    request.baseCloud({
+      params: {
+      },
+      fun: "order",
+      url: "createOrder",
+      onStart: function () {
         wx.showLoading({
           title: '',
         })
       },
-      onSuccess: function(res) {
+      onSuccess: function (res) {
         console.log(res.data)
-        // thisPage.setData({
-        //   editDialogIsShow: false
-        // })
+        wx.showToast({
+          title: '下单完成',
+          icon: "none"
+        })
+        wx.navigateTo({
+          url: '/pages/orderlist/orderlist',
+        })
       },
-      onError: function(res) {
+      onError: function (res) {
         console.log(res)
         wx.showToast({
           title: res.msg,
           icon: "none"
         })
       },
-      onComplete: function() {
+      onComplete: function () {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -229,9 +208,6 @@ Page({
             thisPage.setData({
               loginDialog: false
             })
-            wx.showTabBar({
-
-            })
           },
           onError: function(res) {
             console.log(res)
@@ -241,6 +217,7 @@ Page({
           },
           onComplete: function() {
             wx.hideLoading()
+            wx.stopPullDownRefresh()
           }
         })
       },
@@ -276,13 +253,12 @@ Page({
     var index = e.currentTarget.dataset.index
     var select = e.currentTarget.dataset.select
     var bean = this.data.shopCartList[index]
-    // bean.choosen = !select
-    // this.setData({
-    //   ["shopCartList[" + index + "]"]: bean
-    // })
     this.editCartInfo(bean.sku_id, bean.count, !select)
   },
 
+  /**
+   * 删除购物车商品
+   */
   deleteProduct:function(e){
     var index = e.currentTarget.dataset.index
     var bean = this.data.shopCartList[index]
@@ -302,7 +278,8 @@ Page({
         console.log(res.data)
         thisPage.setData({
           editDialogIsShow: false,
-          shopCartList: res.data
+          shopCartList: res.data.shop_cart_list,
+          totalRetailPrice: res.data.total_retail_price
         })
       },
       onError: function (res) {
@@ -340,7 +317,8 @@ Page({
         console.log(res.data)
         thisPage.setData({
           editDialogIsShow: false,
-          shopCartList: res.data
+          shopCartList: res.data.shop_cart_list,
+          totalRetailPrice: res.data.total_retail_price
         })
       },
       onError: function(res) {
@@ -352,6 +330,7 @@ Page({
       },
       onComplete: function() {
         wx.hideLoading()
+        wx.stopPullDownRefresh()
       }
     })
   }

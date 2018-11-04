@@ -1,12 +1,10 @@
 <!--pages/shoplist/shoplist.wxml-->
 <view>
-  <form bindsubmit="searchProduct">
-    <view class='search_box'>
-      <image class='search_image' src='/images/icon_search.png' />
-      <input class='search_input' bindfocus="searchFocus" bindblur="searchBlur" name="search"></input>
-      <button class='search_submit' wx:if="{{isInput}}" form-type="submit">搜索</button>
-    </view>
-  </form>
+  <view class='search_box'>
+    <image class='title_left' src='/images/icon_search.png' catchtap='leftButton' />
+    <view class='title_text' catchtap='titleButton'>拔萃织物</view>
+    <image class='title_right' src='/images/icon_search.png'catchtap='rightButton'  />
+  </view>
   <view class='shop_list_box'>
     <view class='gone_line'></view>
     <view class='shop_item' wx:for="{{shopList}}" wx:key="shopList" catchtap='productDetail' data-index='{{index}}'>
