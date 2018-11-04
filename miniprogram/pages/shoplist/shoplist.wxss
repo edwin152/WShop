@@ -44,8 +44,7 @@ button::after{ border: none; }
 }
 
 .shop_list_box {
-  width: 680rpx;
-  margin: 0rpx auto;
+  width: 100%;
 }
 
 .gone_line {
@@ -57,13 +56,13 @@ button::after{ border: none; }
   border-radius: 10rpx;
   padding-bottom: 20rpx;
   margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
 }
 
 .shop_item_image {
-  width: 680rpx;
-  height: 300rpx;
-  margin: auto auto 10rpx auto;
+  width: 100%;
+  height: 500rpx;
   background: #EAEAEA;
   /* border-top-left-radius: 10rpx; */
   /* border-top-right-radius: 10rpx; */
