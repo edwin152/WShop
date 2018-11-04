@@ -13,12 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'updateLoad',
-      success: function(res){
-        console.log("小程序云---------------", res)
-      }
-    })
   },
 
   /**
@@ -70,13 +64,13 @@ Page({
 
   },
 
-  getOrderData: function(){
-
+  getOrderData: function () {
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
       },
-      url: "order/getOrderList.do",
+      fun: "order",
+      url: "getOrderList",
       onStart: function () {
         wx.showLoading({
           title: '',
