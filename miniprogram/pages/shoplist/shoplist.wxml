@@ -13,7 +13,7 @@
       <image class='shop_item_image' src='{{item.image_list[0]}}' mode='aspectFill'></image>
       <view class='shop_item_name'>{{item.name}}</view>
       <view class='shop_item_price'>
-        <text class='price_title'>¥</text>{{item.defaultSku.retail_price}}</view>
+        <text class='price_title'>¥</text>{{item.retail_price}}</view>
     </view>
   </view>
 </view>
