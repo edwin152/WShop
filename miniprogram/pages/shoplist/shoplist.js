@@ -112,7 +112,7 @@ Page({
     request.baseCloud({
       params: {},
       fun: "product",
-      url: "getAllProduct",
+      url: "searchProduct",
       onStart() {
         wx.showLoading({
           title: '',
