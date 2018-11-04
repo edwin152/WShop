@@ -120,10 +120,10 @@ Page({
   addShopCart: function() {
 
     var propValues = []
-    for (var i = 0; i < this.data.productBean.props.length; i++) {
-      for (var j = 0; j < this.data.productBean.props[i].values.length; j++) {
-        if (this.data.productBean.props[i].values[j].isSelect) {
-          propValues.push(this.data.productBean.props[i].values[j].id)
+    for (var i = 0; i < this.data.productBean.prop_list.length; i++) {
+      for (var j = 0; j < this.data.productBean.prop_list[i].values.length; j++) {
+        if (this.data.productBean.prop_list[i].values[j].isSelect) {
+          propValues.push(this.data.productBean.prop_list[i].values[j]._id)
           break
         }
       }
@@ -136,19 +136,22 @@ Page({
       })
       return
     }
-    var propSelectStr = "[" + propValues.toString() + "]"
+    var key = JSON.stringify(propValues.sort())
 
     // console.log(this.data.productBean.skus[propSelectStr])
 
-    var shopCartParms = "{ \"skuId\": \"" + this.data.productBean.sku_list[propSelectStr].id + "\", \"count\": \"" + this.data.productCount + "\", \"choose\": true }"
-    console.log(shopCartParms)
+    // var shopCartParms = "{ \"skuId\": \"" + this.data.productBean.sku_list[propSelectStr].id + "\", \"count\": \"" + this.data.productCount + "\", \"choose\": true }"
+    // console.log(shopCartParms)
 
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {
-        shop_cart: shopCartParms
+        sku_id: this.data.productBean.sku_list[key]._id,
+        count: this.data.productCount,
+        choosen: true,
       },
-      url: "user/addCart.do",
+      fun: "user",
+      url: "addCart",
       onStart: function () {
         wx.showLoading({
           title: '',

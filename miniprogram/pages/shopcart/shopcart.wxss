@@ -188,3 +188,11 @@
   z-index: 101;
   display: inline-block;
 }
+
+.delete{
+  position: absolute;
+  top: 40rpx;
+  right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+}

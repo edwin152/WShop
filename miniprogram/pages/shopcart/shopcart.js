@@ -1,5 +1,6 @@
 // pages/shopcart/shopcart.js
 var request = require("../../utils/request.js")
+var editIndex = -1
 Page({
 
   /**
@@ -14,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+
   },
 
   /**
@@ -103,16 +104,17 @@ Page({
   /**
    * 显示修改购物车数量弹框
    */
-  editNumberShow: function() {
-    // this.setData({
-    //   editDialogIsShow: true
-    // })
+  editNumberShow: function(e) {
+    this.setData({
+      editDialogIsShow: true
+    })
+    editIndex = e.currentTarget.dataset.itemIndex
   },
 
   /**
-   * 显示修改购物车数量弹框
+   * 关闭修改购物车数量弹框
    */
-  closeDialog: function() {
+  closeDialog: function(e) {
     this.setData({
       editDialogIsShow: false
     })
@@ -122,7 +124,7 @@ Page({
    * 修改购物车数量
    */
   editNumber: function(e) {
-    var bean = this.data.shopCartList[e.currentTarget.dataset.itemIndex]
+    var bean = this.data.shopCartList[editIndex]
     var productCount = e.detail.value.count
     if (productCount.length <= 0) {
       wx.showToast({
@@ -131,13 +133,48 @@ Page({
       })
       return
     }
-    var shopCartStr = "{ \"sku\": \"" + bean.skus[propSelectStr].id + "\", \"count\": \"" + productCount + "\", \"choose\": true }"
+    this.editCartInfo(bean.sku_id, productCount, bean.choosen)
+    // var shopCartStr = "{ \"sku\": \"" + bean.skus[propSelectStr].id + "\", \"count\": \"" + productCount + "\", \"choose\": true }"
+    // var thisPage = this
+    // request.baseCloud({
+    //   params: {
+    //     sku_id: bean.sku_id,
+    //     count: productCount,
+    //     choosen: bean.choosen
+    //   },
+    //   fun: "user",
+    //   url: "editCart",
+    //   onStart: function() {
+    //     wx.showLoading({
+    //       title: '',
+    //     })
+    //   },
+    //   onSuccess: function(res) {
+    //     console.log(res.data)
+    //     thisPage.setData({
+    //       editDialogIsShow: false,
+    //       shopCartList: res.data
+    //     })
+    //   },
+    //   onError: function(res) {
+    //     console.log(res)
+    //     wx.showToast({
+    //       title: res.msg,
+    //       icon: "none"
+    //     })
+    //   },
+    //   onComplete: function() {
+    //     wx.hideLoading()
+    //   }
+    // })
+
+  },
+
+  goPay: function() {
     var thisPage = this
     request.baseRequest({
-      params: {
-        shop_cart: shopCartStr
-      },
-      url: "user/editCart.do",
+      params: {},
+      url: "order/createOrder.do",
       onStart: function() {
         wx.showLoading({
           title: '',
@@ -145,9 +182,9 @@ Page({
       },
       onSuccess: function(res) {
         console.log(res.data)
-        thisPage.setData({
-          editDialogIsShow: false
-        })
+        // thisPage.setData({
+        //   editDialogIsShow: false
+        // })
       },
       onError: function(res) {
         console.log(res)
@@ -160,15 +197,102 @@ Page({
         wx.hideLoading()
       }
     })
-
   },
 
-  goPay: function() {
-    var thisPage = this
-    request.baseRequest({
-      params: {
+
+  /**
+   * 用户登录
+   */
+  userLogin: function() {
+    let thisPage = this
+    wx.getUserInfo({
+      withCredentials: true,
+      lang: '',
+      success: function(user) {
+        request.baseCloud({
+          params: {
+            avatar: user.userInfo.avatarUrl,
+            name: user.userInfo.nickName,
+          },
+          fun: "user",
+          url: "login",
+          onStart: function() {
+            wx.showLoading({
+              title: '',
+            })
+          },
+          onSuccess: function(res) {
+            wx.showToast({
+              title: '登录成功',
+              icon: "none"
+            })
+            thisPage.setData({
+              loginDialog: false
+            })
+            wx.showTabBar({
+
+            })
+          },
+          onError: function(res) {
+            console.log(res)
+            wx.showToast({
+              title: '登录失败',
+            })
+          },
+          onComplete: function() {
+            wx.hideLoading()
+          }
+        })
       },
-      url: "order/createOrder.do",
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+
+  /**
+   * 判断用户是否授权
+   */
+  isRegister: function() {
+    let thisPage = this
+    wx.getSetting({
+      success: function(res) {
+        // res.authSetting.scope.userInfo
+        if (res.authSetting["scope.userInfo"])
+          return
+        wx.hideTabBar({
+
+        })
+        thisPage.setData({
+          loginDialog: true
+        })
+      }
+    })
+  },
+
+  /**
+   * 选择商品
+   */
+  selectProduct: function(e) {
+    var index = e.currentTarget.dataset.index
+    var select = e.currentTarget.dataset.select
+    var bean = this.data.shopCartList[index]
+    // bean.choosen = !select
+    // this.setData({
+    //   ["shopCartList[" + index + "]"]: bean
+    // })
+    this.editCartInfo(bean.sku_id, bean.count, !select)
+  },
+
+  deleteProduct:function(e){
+    var index = e.currentTarget.dataset.index
+    var bean = this.data.shopCartList[index]
+    var thisPage = this
+    request.baseCloud({
+      params: {
+        sku_id: bean.sku_id,
+      },
+      fun: "user",
+      url: "deleteCart",
       onStart: function () {
         wx.showLoading({
           title: '',
@@ -176,9 +300,10 @@ Page({
       },
       onSuccess: function (res) {
         console.log(res.data)
-        // thisPage.setData({
-        //   editDialogIsShow: false
-        // })
+        thisPage.setData({
+          editDialogIsShow: false,
+          shopCartList: res.data
+        })
       },
       onError: function (res) {
         console.log(res)
@@ -193,72 +318,40 @@ Page({
     })
   },
 
-
   /**
-   * 用户登录
+   * 编辑购物车
    */
-  userLogin: function () {
-    let thisPage = this
-    wx.getUserInfo({
-      withCredentials: true,
-      lang: '',
-      success: function (user) {
-        request.baseCloud({
-          params: {
-            avatar: user.userInfo.avatarUrl,
-            name: user.userInfo.nickName,
-          },
-          fun: "user",
-          url: "login",
-          onStart: function () {
-            wx.showLoading({
-              title: '',
-            })
-          },
-          onSuccess: function (res) {
-            wx.showToast({
-              title: '登录成功',
-              icon: "none"
-            })
-            thisPage.setData({
-              loginDialog: false
-            })
-            wx.showTabBar({
-
-            })
-          },
-          onError: function (res) {
-            console.log(res)
-            wx.showToast({
-              title: '登录失败',
-            })
-          },
-          onComplete: function () {
-            wx.hideLoading()
-          }
+  editCartInfo: function(sku_id, count, choosen) {
+    var thisPage = this
+    request.baseCloud({
+      params: {
+        sku_id: sku_id,
+        count: count,
+        choosen: choosen
+      },
+      fun: "user",
+      url: "editCart",
+      onStart: function() {
+        wx.showLoading({
+          title: '',
         })
       },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-  },
-
-  /**
-   * 判断用户是否授权
-   */
-  isRegister: function () {
-    let thisPage = this
-    wx.getSetting({
-      success: function (res) {
-        // res.authSetting.scope.userInfo
-        if (res.authSetting["scope.userInfo"])
-          return
-        wx.hideTabBar({
-
-        })
+      onSuccess: function(res) {
+        console.log(res.data)
         thisPage.setData({
-          loginDialog: true
+          editDialogIsShow: false,
+          shopCartList: res.data
         })
+      },
+      onError: function(res) {
+        console.log(res)
+        wx.showToast({
+          title: res.msg,
+          icon: "none"
+        })
+      },
+      onComplete: function() {
+        wx.hideLoading()
       }
     })
   }
