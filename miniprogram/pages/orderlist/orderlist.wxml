@@ -10,3 +10,11 @@
     <view>下单时间：{{item.create_time}}</view>
   </view>
 </view>
+
+
+<view class='login_dialog_backgound' wx:if="{{loginDialog}}">
+  <view class='login_dialog_box'>
+    <view class='dialog_title'>请授权登录</view>
+    <button open-type='getUserInfo' bindgetuserinfo='userLogin' class='login_button'>去授权</button>
+  </view>
+</view>

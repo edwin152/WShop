@@ -71,9 +71,10 @@ Page({
    */
   getShopCartInfo: function() {
     var thisPage = this
-    request.baseRequest({
+    request.baseCloud({
       params: {},
-      url: "user/getCart.do",
+      fun: "user",
+      url: "getCart",
       onStart: function() {
         wx.showLoading({
           title: '',
@@ -191,4 +192,74 @@ Page({
       }
     })
   },
+
+
+  /**
+   * 用户登录
+   */
+  userLogin: function () {
+    let thisPage = this
+    wx.getUserInfo({
+      withCredentials: true,
+      lang: '',
+      success: function (user) {
+        request.baseCloud({
+          params: {
+            avatar: user.userInfo.avatarUrl,
+            name: user.userInfo.nickName,
+          },
+          fun: "user",
+          url: "login",
+          onStart: function () {
+            wx.showLoading({
+              title: '',
+            })
+          },
+          onSuccess: function (res) {
+            wx.showToast({
+              title: '登录成功',
+              icon: "none"
+            })
+            thisPage.setData({
+              loginDialog: false
+            })
+            wx.showTabBar({
+
+            })
+          },
+          onError: function (res) {
+            console.log(res)
+            wx.showToast({
+              title: '登录失败',
+            })
+          },
+          onComplete: function () {
+            wx.hideLoading()
+          }
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
+  /**
+   * 判断用户是否授权
+   */
+  isRegister: function () {
+    let thisPage = this
+    wx.getSetting({
+      success: function (res) {
+        // res.authSetting.scope.userInfo
+        if (res.authSetting["scope.userInfo"])
+          return
+        wx.hideTabBar({
+
+        })
+        thisPage.setData({
+          loginDialog: true
+        })
+      }
+    })
+  }
 })

@@ -25,7 +25,6 @@ Page({
       product: product,
       // skus: skus
     })
-    this.getAllSku()
   },
 
   /**
@@ -39,6 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getAllSku()
 
   },
 

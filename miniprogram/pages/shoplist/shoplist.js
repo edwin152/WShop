@@ -17,7 +17,6 @@ Page({
   onLoad: function(options) {
     var data = require("../../utils/date.js")
     var thisPage = this
-    this.isRegister()
   },
 
   /**
@@ -30,7 +29,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
+    this.isRegister()
     this.getProductList()
 
   },
@@ -76,9 +76,9 @@ Page({
     console.log(e)
     var index = e.currentTarget.dataset.index
     var product = this.data.shopList[index]
-    var productStr = JSON.stringify(product)
+    // var productStr = JSON.stringify(product)
     wx.navigateTo({
-      url: '../product/product?product=' + productStr,
+      url: '../product/product?productId=' + product._id,
     })
   },
   /**
@@ -132,20 +132,28 @@ Page({
     })
   },
 
+  /**
+   * 用户登录
+   */
   userLogin: function() {
     let thisPage = this
     wx.getUserInfo({
       withCredentials: true,
       lang: '',
-      success: function(res) {
-        wx.cloud.callFunction({
-          name: "user",
-          data: {
-            name: "login",
-            avatarUrl: res.userInfo.avatarUrl,
-            userName: res.userInfo.nickName,
+      success: function (user) {
+        request.baseCloud({
+          params: {
+            avatar: user.userInfo.avatarUrl,
+            name: user.userInfo.nickName,
           },
-          success: function(r) {
+          fun: "user",
+          url: "login",
+          onStart: function () {
+            wx.showLoading({
+              title: '',
+            })
+          },
+          onSuccess: function (res) {
             wx.showToast({
               title: '登录成功',
               icon: "none"
@@ -157,10 +165,14 @@ Page({
 
             })
           },
-          fail: function() {
+          onError: function (res) {
+            console.log(res)
             wx.showToast({
               title: '登录失败',
             })
+          },
+          onComplete: function () {
+            wx.hideLoading()
           }
         })
       },
@@ -174,42 +186,6 @@ Page({
    */
   isRegister: function() {
     let thisPage = this
-    // request.baseCloud({
-    //   params: {
-    //   },
-    //   fun: "user",
-    //   url: "isRegister",
-    //   onStart: function () {
-    //     wx.showLoading({
-    //       title: '',
-    //     })
-    //   },
-    //   onSuccess: function (res) {
-    //     console.log(res.data)
-    //     if (res.data.isRegister){
-    //       thisPage.setData({
-    //         loginDialog: false
-    //       })
-    //       wx.showTabBar({
-
-    //       })
-    //     }else{
-    //       wx.hideTabBar({
-
-    //       })
-    //       thisPage.setData({
-    //         loginDialog: true
-    //       })
-    //     }
-    //   },
-    //   onError: function (res) {
-    //     console.log(res)
-    //   },
-    //   onComplete: function () {
-    //     wx.hideLoading()
-    //     wx.stopPullDownRefresh()
-    //   }
-    // })
     wx.getSetting({
       success: function(res) {
         // res.authSetting.scope.userInfo

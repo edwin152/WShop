@@ -4,6 +4,7 @@ var stepList = []
 var sizeList = []
 var checkList = []
 var sourceStr = ""
+var productId = ""
 Page({
 
   /**
@@ -35,31 +36,33 @@ Page({
     sizeList = []
     checkList = []
     sourceStr = ""
+    productId = options.productId
+    this.getProductDetail()
 
-    var productStr = options.product
-    var product = JSON.parse(productStr)
-    sourceStr = product.unique
+    // var productStr = options.product
+    // var product = JSON.parse(productStr)
+    // sourceStr = product.unique
 
-    var stepNum = 1;
-    for (var i = 0; i < product.props.length; i++) {
-      if (i == 0) {
-        stepList.push(stepNum)
-      } else {
-        stepNum = product.props[i - 1].values.length * stepNum
-        stepList.push(stepNum)
-      }
-      sizeList.push(product.props[i].values.length)
-      checkList.push(-1)
-    }
-    for (var i = 0; i < product.props.length; i++) {
-      for (var j = 0; j < product.props[i].values.length; j++) {
-        product.props[i].values[j].isCanUse = this.isCanUse(0, 0, checkList, 0)
-      }
-    }
+    // var stepNum = 1;
+    // for (var i = 0; i < product.prop_list.length; i++) {
+    //   if (i == 0) {
+    //     stepList.push(stepNum)
+    //   } else {
+    //     stepNum = product.prop_list[i - 1].values.length * stepNum
+    //     stepList.push(stepNum)
+    //   }
+    //   sizeList.push(product.prop_list[i].values.length)
+    //   checkList.push(-1)
+    // }
+    // for (var i = 0; i < product.prop_list.length; i++) {
+    //   for (var j = 0; j < product.prop_list[i].values.length; j++) {
+    //     product.prop_list[i].values[j].isCanUse = this.isCanUse(0, 0, checkList, 0)
+    //   }
+    // }
 
-    this.setData({
-      productBean: product
-    })
+    // this.setData({
+    //   productBean: product
+    // })
   },
 
   /**
@@ -203,7 +206,7 @@ Page({
    * 点击规格
    */
   clickPropItem: function(e) {
-    var propList = this.data.productBean.props
+    var propList = this.data.productBean.prop_list
     var propId = e.currentTarget.dataset.propId
     var propItemId = e.currentTarget.dataset.propItemId
     var prop = propList[propId].values[propItemId]
@@ -211,6 +214,7 @@ Page({
     for (var j = 0; j < propList[propId].values.length; j++) {
       if (j == propItemId) {
         propList[propId].values[j].isSelect = !isSelectIn
+        propList[propId].isSelect = !isSelectIn
       } else {
         propList[propId].values[j].isSelect = false
       }
@@ -249,29 +253,11 @@ Page({
 
 
 
-    var path = "productBean.props"
+    var path = "productBean.prop_list"
     this.setData({
       [path]: propList
     })
   },
-
-  // /**
-  //  * 刷新规格可选
-  //  */
-  // propView: function () {
-  //   var propList = this.data.productBean.props
-  // },
-
-  // /**
-  //  * 规格是否可选择
-  //  */
-  // redeuceDim: function (step, index, size, source){
-  //   var data = ""
-  //   for (var i = index * step; i < source.length; i += step * size) {
-  //     data += source.substr(i, step)
-  //   }
-  //   return data
-  // },
 
   /**
    * 判断某个规格是否可以选择
@@ -293,10 +279,139 @@ Page({
     return this.isCanUse(startRowIndex + 1, 0, checkList, flexValue + sel) || this.isCanUse(startRowIndex, startColIndex + 1, checkList, flexValue)
   },
 
+  /**
+   * 编辑商品数量
+   */
   editProductCount:function(e){
     // console.log(e)
     this.setData({
       productCount: parseInt(e.detail.value)
+    })
+  },
+  
+  /**
+   * 获取商品详情数据
+   */
+  getProductDetail: function(){
+    let thisPage = this
+    request.baseCloud({
+      params: {
+        _id: productId,
+      },
+      fun: "product",
+      url: "getProductDetail",
+      onStart: function () {
+        wx.showLoading({
+          title: '',
+        })
+      },
+      onSuccess: function (res) {
+        console.log(res.data)
+        var product = res.data
+        sourceStr = product.unique
+
+        var stepNum = 1;
+        for (var i = 0; i < product.prop_list.length; i++) {
+          if (i == 0) {
+            stepList.push(stepNum)
+          } else {
+            stepNum = product.prop_list[i - 1].values.length * stepNum
+            stepList.push(stepNum)
+          }
+          sizeList.push(product.prop_list[i].values.length)
+          checkList.push(-1)
+        }
+        for (var i = 0; i < product.prop_list.length; i++) {
+          for (var j = 0; j < product.prop_list[i].values.length; j++) {
+            product.prop_list[i].values[j].isCanUse = thisPage.isCanUse(0, 0, checkList, 0)
+          }
+        }
+        thisPage.setData({
+          productBean: product
+        })
+      },
+      onError: function (res) {
+        console.log(res)
+        wx.showToast({
+          title: res.msg,
+          icon: "none"
+        })
+      },
+      onComplete: function () {
+        wx.hideLoading()
+        wx.stopPullDownRefresh()
+      }
+    })
+  },
+
+
+
+  /**
+   * 用户登录
+   */
+  userLogin: function () {
+    let thisPage = this
+    wx.getUserInfo({
+      withCredentials: true,
+      lang: '',
+      success: function (user) {
+        request.baseCloud({
+          params: {
+            avatar: user.userInfo.avatarUrl,
+            name: user.userInfo.nickName,
+          },
+          fun: "user",
+          url: "login",
+          onStart: function () {
+            wx.showLoading({
+              title: '',
+            })
+          },
+          onSuccess: function (res) {
+            wx.showToast({
+              title: '登录成功',
+              icon: "none"
+            })
+            thisPage.setData({
+              loginDialog: false
+            })
+            wx.showTabBar({
+
+            })
+          },
+          onError: function (res) {
+            console.log(res)
+            wx.showToast({
+              title: '登录失败',
+            })
+          },
+          onComplete: function () {
+            wx.hideLoading()
+          }
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
+  /**
+   * 判断用户是否授权
+   */
+  isRegister: function () {
+    let thisPage = this
+    wx.getSetting({
+      success: function (res) {
+        // res.authSetting.scope.userInfo
+        if (res.authSetting["scope.userInfo"])
+          return
+        wx.hideTabBar({
+
+        })
+        thisPage.setData({
+          loginDialog: true
+        })
+      }
     })
   }
 })

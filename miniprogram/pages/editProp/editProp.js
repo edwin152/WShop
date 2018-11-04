@@ -234,7 +234,7 @@ Page({
    */
   addInput: function(e) {
     var path = "prop.values"
-    if (this.data.prop.hasOwnProperty("values")) {
+    if (this.data.prop.hasOwnProperty("values") && this.data.prop.values.length > 0) {
       if (this.data.prop.values[this.data.prop.values.length - 1].name.length <= 0){
         return
       }
@@ -343,10 +343,15 @@ Page({
         })
       },
       onSuccess: function(res) {
-        // var bean = res.result
-        // thisPage.setData({
-        //   prop: res.result
-        // })
+        var propList = thisPage.data.prop.values
+        for (var i = 0; i <  propList.length; i++){
+          if (propList[i].name.length <= 0){
+            propList[i] = res.data
+          }
+        }
+        thisPage.setData({
+          ["prop.values"]: propList
+        })
         wx.showToast({
           title: '保存成功',
           icon: "none"

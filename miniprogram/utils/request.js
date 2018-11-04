@@ -78,7 +78,7 @@ function baseRequest(params) {
 function baseCloud(e) {
 
   // 判断是否有start回调
-  if (e.hasOwnProperty("onStart") && typeof("e.onStart") == "function") {
+  if (e.hasOwnProperty("onStart") && typeof(e.onStart) == "function") {
     e.onStart()
   }
   console.log("开始请求参数", e)
@@ -98,6 +98,10 @@ function baseCloud(e) {
         if (e.hasOwnProperty("onSuccess")) {
           e.onSuccess(res.result)
         }
+      } else if (res.result.code == 1001){
+        wx.showToast({
+          title: '用户未登录，请回到首页登录',
+        })
       } else {
         if (e.hasOwnProperty("onError")) {
           e.onError(res.result)

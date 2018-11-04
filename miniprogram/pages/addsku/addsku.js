@@ -189,6 +189,10 @@ Page({
       },
       onSuccess: function(res) {
         console.log(res.data)
+        wx.showToast({
+          title: '增加成功',
+          icon: "none"
+        })
       },
       onError: function(res) {
         console.log(res)

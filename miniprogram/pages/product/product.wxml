@@ -2,28 +2,28 @@
 <view class='product_box'>
   <view class='product_iamges' id='top_image'>
     <swiper bindchange='changeShowImage' class='product_iamges_swiper'>
-      <view wx:for="{{productBean.listImage}}" wx:key="product_images">
+      <view wx:for="{{productBean.image_list}}" wx:key="product_images">
         <swiper-item>
           <image src="{{item}}" class='product_image' catchtap='maxImage' mode="aspectFill" data-item-Index="{{index}}"></image>
         </swiper-item>
       </view>
     </swiper>
-    <view class='images_number'>{{showProductImageNumber}}/{{productBean.listImage.length}}</view>
+    <view class='images_number'>{{showProductImageNumber}}/{{productBean.image_list.length}}</view>
   </view>
   <view class='product_info'>
     <view class='product_name'>{{productBean.name}}</view>
     <view class='product_price'>
-      ¥{{productBean.defaultSku.retail_price}}</view>
+      ¥{{productBean.default_sku.retail_price}}</view>
   </view>
   <view class='line' id='line_top'></view>
   <view class='stock_info'>
     <view class='stock_title'>库存：</view>
-    <view class='stock_content'>{{productBean.stock}}</view>
+    <view class='stock_content'>{{productBean.default_sku.stock_count}}</view>
   </view>
   <view class='prop_box'>
 
-    <view class='title'>商品规格</view>
-    <view wx:for="{{productBean.props}}" wx:key="propList" wx:for-item="prop_item" wx:for-index="propIndex" class='prop_box'>
+    <view class='title' wx:if="{{productBean.prop_list.length > 0}}">商品规格</view>
+    <view wx:for="{{productBean.prop_list}}" wx:key="propList" wx:for-item="prop_item" wx:for-index="propIndex" class='prop_box'>
       <view class="prop_select">{{prop_item.name}}</view>
       <view class='prop_item_box'>
         <view wx:for="{{prop_item.values}}" class="{{item.isSelect ? 'prop_item_select' : 'prop_item_none'}}" wx:key="values" catchtap='clickPropItem' data-prop-Id='{{propIndex}}' data-prop-Item-Id='{{index}}' wx:if="{{item.isCanUse}}">{{item.name}}</view>
@@ -41,5 +41,14 @@
   <view class='bottom'></view>
   <view class='bottom_btn'>
     <view catchtap='addShopCart' class='bottom_text'>加入购物车</view>
+  </view>
+</view>
+
+
+
+<view class='login_dialog_backgound' wx:if="{{loginDialog}}">
+  <view class='login_dialog_box'>
+    <view class='dialog_title'>请授权登录</view>
+    <button open-type='getUserInfo' bindgetuserinfo='userLogin' class='login_button'>去授权</button>
   </view>
 </view>
