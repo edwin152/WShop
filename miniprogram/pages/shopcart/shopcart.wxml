@@ -1,5 +1,39 @@
 <!--pages/shopcart/shopcart.wxml-->
-<view class='shop_cart_box'>
+<view class='root'>
+  <view class='cart_item' wx:key='shopCartList' wx:for="{{shopCartList}}">
+    <view class="select" catchtap='selectProduct' data-index="{{index}}" data-select="{{item.choosen}}">{{item.choosen ? '·' : ''}}</view>
+
+    <image class='image' src='{{item.image_list[0]}}' mode="aspectFill" />
+
+    <view class='detail'>
+      <view class='name'>{{item.name}}</view>
+
+      <view class='norms'>{{item.prop_value_str}}</view>
+
+      <view class='delete' catchtap='deleteProduct' data-index="{{index}}"> × </view>
+
+      <view class='count'>
+        <text data-item-Index="{{index}}">{{'< '}}</text>
+        <text>{{item.count}}</text>
+        <text data-item-Index="{{index}}">{{' >'}}</text>
+      </view>
+
+      <view class='price'>¥{{item.retail_price}}</view>
+    </view>
+  </view>
+</view>
+
+<view style='width: 100%;'>
+  <view class='bottom'>
+    <view class='total_price'>总计：¥{{totalRetailPrice}}</view>
+
+    <view class='subimt' catchtap='goPay'>提交</view>
+  </view>
+</view>
+
+
+
+<!-- <view class='shop_cart_box'>
   <view class='shop_cart_list' wx:for="{{shopCartList}}" wx:key="shopCartList">
     <view class="{{item.choosen ? 'product_select' : 'product_not' }}" catchtap='selectProduct' data-index="{{index}}" data-select="{{item.choosen}}">√</view>
     <image class='shop_image' src='{{item.image_list[0]}}'></image>
@@ -18,19 +52,18 @@
   </view>
 </view>
 <view class='bottom_util' wx:if="{{shopCartList != null && shopCartList.length > 0}}">
-  <!--合计  已省  -->
   <view class='cart_price'>
     <view class='heji'>
       <text style='font-size:38rpx;'>合计:</text>
       <text style='font-size:38rpx;'>¥{{totalRetailPrice}}</text>
     </view>
   </view>
-  <!--关注  删除 结算  -->
+
   <view class='bottom_util_button'>
     <view class='subimt_order' catchtap='goPay'>结算</view>
   </view>
 </view>
-<!-- 编辑购物车数量 -->
+
 <view class='dialog_bakcground' wx:if="{{editDialogIsShow}}">
   <view class='dialog_box'>
     <view class='dialog_title'>
@@ -44,7 +77,8 @@
       </view>
     </form>
   </view>
-</view>
+</view> 
+-->
 
 <view class='login_dialog_backgound' wx:if="{{loginDialog}}">
   <view class='login_dialog_box'>
