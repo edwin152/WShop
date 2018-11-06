@@ -1,7 +1,9 @@
 <!--pages/productList/productList.wxml-->
 <view style='width: 100%;'>
-  <view class='shop_item' wx:for="{{productList}}" wx:key="productList" catchtap='editProduct' data-index='{{index}}' wx:for-index="productIndex">
-    <swiper indicator-dots="true" current="{{swiperIndex}}" indicator-color="rgba(50, 50, 50, 1)" indicator-active-color="#AEAEAE" style="height: 500rpx;" bindchange="changeImageIndex" data-image-Index="{{productIndex}}">
+  <!-- <view class='shop_item' wx:for="{{productList}}" wx:key="productList" catchtap='editProduct' data-index='{{index}}' wx:for-index="productIndex"> -->
+  <view class='shop_item' wx:for="{{productList}}" wx:key="productList" data-index='{{index}}' wx:for-index="productIndex">
+  <!-- swiper无法使用class调节样式 -->
+    <swiper style="background: #EFEFEF;height: 500rpx;" indicator-dots="true" current="{{swiperIndex}}" indicator-color="rgba(50, 50, 50, 1)" indicator-active-color="#AEAEAE" bindchange="changeImageIndex" data-image-Index="{{productIndex}}">
       <swiper-item wx:for="{{item.image_list}}" wx:for-item="imageItem" wx:key="">
         <image class='shop_item_image' src='{{imageItem}}' mode='aspectFill'></image>
       </swiper-item>

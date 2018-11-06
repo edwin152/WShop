@@ -7,72 +7,71 @@ Page({
    * 页面的初始数据
    */
   data: {
-    productList:[],
+    productList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.getProductList()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
   /**
    * 获取商品列表
    */
-  getProductList: function(){
+  getProductList: function() {
     var thisPage = this
     request.baseCloud({
-      params: {
-      },
+      params: {},
       fun: "product",
       url: "getAllProduct",
       onStart() {
@@ -80,15 +79,15 @@ Page({
           title: '',
         })
       },
-      onSuccess: function (res) {
+      onSuccess: function(res) {
         thisPage.setData({
           productList: res.data
         })
       },
-      onError: function (res) {
+      onError: function(res) {
         console.log(res.msg)
       },
-      onComplete: function () {
+      onComplete: function() {
         wx.hideLoading()
       }
     })
@@ -96,7 +95,7 @@ Page({
   /**
    * 编辑商品
    */
-  editProduct:function(e){
+  editProduct: function(e) {
     var product = this.data.productList[e.currentTarget.dataset.index]
     var productStr = JSON.stringify(product)
     wx.navigateTo({
@@ -106,7 +105,7 @@ Page({
   /**
    * 管理库存
    */
-  manageStock: function(e){
+  manageStock: function(e) {
     var product = this.data.productList[e.currentTarget.dataset.index]
     var productStr = JSON.stringify(product)
     wx.navigateTo({
@@ -117,13 +116,13 @@ Page({
   /**
    * 删除商品
    */
-  deleteProduct: function (e) {
+  deleteProduct: function(e) {
     let thisPage = this
     wx.showModal({
       title: '删除商品',
       content: '删除后不可恢复，确定删除吗？',
-      success: function(res){
-        if (res.confirm){
+      success: function(res) {
+        if (res.confirm) {
           var id = e.currentTarget.dataset.productId
           request.baseCloud({
             params: {
@@ -136,19 +135,19 @@ Page({
                 title: '',
               })
             },
-            onSuccess: function (res) {
+            onSuccess: function(res) {
               thisPage.getProductList()
             },
-            onError: function (res) {
+            onError: function(res) {
               console.log(res.msg)
             },
-            onComplete: function () {
+            onComplete: function() {
               wx.hideLoading()
             }
           })
         }
       },
-      fail: function(){
+      fail: function() {
         wx.showToast({
           title: '出错了，请重试',
           icon: "none"
@@ -156,11 +155,11 @@ Page({
       }
     })
   },
-  
+
   /**
    * 滑动图片
    */
-  changeImageIndex: function(e){
+  changeImageIndex: function(e) {
     // console.log(e)
     imageIndexs[e.currentTarget.dataset.imageIndex] = e.detail.current
   },
@@ -168,7 +167,7 @@ Page({
   /**
    * 添加图片
    */
-  addImage: function(e){
+  addImage: function(e) {
     let thisPage = this
     var productIndex = e.currentTarget.dataset.productIndex
     var product = this.data.productList[productIndex]
@@ -177,7 +176,7 @@ Page({
       count: 1,
       sizeType: "original",
       sourceType: "album",
-      success: function (res) {
+      success: function(res) {
         wx.showLoading({
           title: '上传中',
         })
@@ -202,9 +201,8 @@ Page({
               },
               fun: "product",
               url: "editProduct",
-              onStart: function () {
-              },
-              onSuccess: function (res) {
+              onStart: function() {},
+              onSuccess: function(res) {
                 // console.log(res.data)
                 thisPage.setData({
                   ["productList[" + productIndex + "]"]: res.data
@@ -214,14 +212,14 @@ Page({
                   icon: "none"
                 })
               },
-              onError: function (res) {
+              onError: function(res) {
                 console.log(res)
                 wx.showToast({
                   title: res.msg,
                   icon: "none"
                 })
               },
-              onComplete: function () {
+              onComplete: function() {
                 wx.hideLoading()
               }
             })
@@ -235,11 +233,10 @@ Page({
               icon: "none"
             })
           },
-          complete: () => {
-          }
+          complete: () => {}
         })
       },
-      fail: function () {
+      fail: function() {
 
       }
     })
@@ -248,47 +245,63 @@ Page({
   /**
    * 删除图片
    */
-  deleteImage: function (e) {
+  deleteImage: function(e) {
     let thisPage = this
     var productIndex = e.currentTarget.dataset.productIndex
     var product = this.data.productList[productIndex]
     var imageList = product.image_list
     var deleteIndex = imageIndexs[productIndex]
     imageList.splice(deleteIndex, 1)
-    request.baseCloud({
-      params: {
-        _id: product._id,
-        name: product.name,
-        image_list: imageList
+    wx.showModal({
+      title: '删除图片',
+      content: '图片删除后不可恢复，确定要删除吗？',
+      success: function(res) {
+        if (res.confirm) {
+          var id = e.currentTarget.dataset.productId
+          request.baseCloud({
+            params: {
+              _id: product._id,
+              name: product.name,
+              image_list: imageList
+            },
+            fun: "product",
+            url: "editProduct",
+            onStart: function() {
+              wx.showLoading({
+                title: '',
+              })
+            },
+            onSuccess: function(res) {
+              // console.log(res.data)
+              thisPage.setData({
+                ["productList[" + productIndex + "]"]: res.data,
+                swiperIndex: 0
+              })
+              wx.showToast({
+                title: '成功',
+                icon: "none"
+              })
+            },
+            onError: function(res) {
+              console.log(res)
+              wx.showToast({
+                title: res.msg,
+                icon: "none"
+              })
+            },
+            onComplete: function() {
+              wx.hideLoading()
+            }
+          })
+        }
       },
-      fun: "product",
-      url: "editProduct",
-      onStart: function () {
-        wx.showLoading({
-          title: '',
-        })
-      },
-      onSuccess: function (res) {
-        // console.log(res.data)
-        thisPage.setData({
-          ["productList[" + productIndex + "]"]: res.data,
-          swiperIndex: 0
-        })
+      fail: function() {
         wx.showToast({
-          title: '成功',
+          title: '出错了，请重试',
           icon: "none"
         })
-      },
-      onError: function (res) {
-        console.log(res)
-        wx.showToast({
-          title: res.msg,
-          icon: "none"
-        })
-      },
-      onComplete: function () {
-        wx.hideLoading()
       }
     })
+
   }
 })
