@@ -1,4 +1,5 @@
 /* pages/product/product.wxss */
+
 .root {
   margin-top: 60rpx;
   margin-left: 30rpx;
@@ -20,19 +21,19 @@
 .image {
   height: 90vh;
   width: 100%;
-  background: #EEEEEE;
+  background: #eee;
 }
 
-.name{
-  font-size:30rpx; 
-  width:75vw;
+.name {
+  font-size: 30rpx;
+  width: 75vw;
   font-weight: 800;
   margin: 60rpx auto 0rpx;
-  color:#000;
+  color: #000;
   text-align: center;
 }
 
-.prop_title{
+.prop_title {
   color: #000;
   margin-top: 15rpx;
   font-weight: 800;
@@ -59,11 +60,10 @@
 }
 
 .add_cart {
-  color: #292929;
+  background: #000;
+  color: #fff;
   margin-left: 30rpx;
-  border: solid #292929 1px;
-  font-size: 32rpx;
-  font-weight: 500;
+  font-size: 28rpx;
   padding: 15rpx 75rpx;
   display: inline-block;
 }
@@ -72,5 +72,5 @@
   font-size: 26rpx;
   font-weight: 700;
   margin-right: 30rpx;
-  display: inline-block
+  display: inline-block;
 }

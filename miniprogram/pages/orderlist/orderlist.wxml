@@ -1,16 +1,31 @@
 <!--pages/orderlist/orderlist.wxml-->
-<view>
-  <view class='order_list' wx:for="{{orderList}}" wx:key="orderList">
-    <view class='order_id'>订单编号：
-      <text class='order_content'>{{item._id}}</text> </view>
+
+<view style='width: 100%;'>
+  <view class='order_item' wx:key="" wx:for="{{orderList}}">
+    <image class='image' src='{{item.sku_list[0].image_list[0]}}' mode='aspectFill' />
+
     <view>
-      <image  wx:for="{{item.sku_list}}" wx:key="skuList" wx:for-item="sku" class='shop_image' src='{{sku.image_list[0]}}'></image>
+      <text class='value_msg'>共</text>
+      <text class='key_msg'>{{item.sku_list.length}}</text>
+      <text class='value_msg'>件商品</text>
     </view>
-    <view>共{{item.sku_list.length}}件商品</view>
-    <view>下单时间：{{item.create_time}}</view>
+
+    <view>
+      <text class='key_msg'>订单编号：</text>
+      <text class='value_msg'>{{item._id}}</text>
+    </view>
+
+    <view>
+      <text class='key_msg'>下单时间：</text>
+      <text class='value_msg'>{{item.create_time}}</text>
+    </view>
+
+    <view>
+      <text class='key_msg'>快递单号：</text>
+      <text class='value_msg'>{{item.logistic_num}}</text>
+    </view>
   </view>
 </view>
-
 
 <view class='login_dialog_backgound' wx:if="{{loginDialog}}">
   <view class='login_dialog_box'>
