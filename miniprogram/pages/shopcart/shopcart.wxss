@@ -8,11 +8,11 @@
 .bottom {
   position: fixed;
   bottom: 0rpx;
-  margin-left: 30rpx;
-  margin-right: 30rpx;
+  padding: 0 5%;
   background: #fff;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .cart_item {
@@ -91,14 +91,14 @@
 }
 
 .total_price {
-  width: 100%;
+  width: 90%;
   text-align: center;
   font-size: 32rpx;
   margin-top: 15rpx;
 }
 
 .subimt {
-  width: 100%;
+  width: 90%;
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;

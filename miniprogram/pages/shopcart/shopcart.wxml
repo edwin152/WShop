@@ -13,9 +13,9 @@
       <view class='delete' catchtap='deleteProduct' data-index="{{index}}"> × </view>
 
       <view class='count'>
-        <text data-item-Index="{{index}}">{{'< '}}</text>
+        <text data-item-Index="{{index}}" catchtap='editCartCount' data-edit-Type="reduce">{{'< '}}</text>
         <text>{{item.count}}</text>
-        <text data-item-Index="{{index}}">{{' >'}}</text>
+        <text data-item-Index="{{index}}" catchtap='editCartCount' data-edit-Type="add">{{' >'}}</text>
       </view>
 
       <view class='price'>¥{{item.retail_price}}</view>
