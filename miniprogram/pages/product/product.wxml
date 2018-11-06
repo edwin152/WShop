@@ -1,7 +1,7 @@
 <!--pages/product/product.wxml-->
 <view style='width: 100%;'>
   <view class='root'>
-    <image class='image' src="{{productBean.image_list[0]}}" catchtap='maxImage' mode="aspectFill" />
+    <image class='image' src="{{productBean.image_list[0]}}" catchtap='maxImage' mode="aspectFill" data-image-Url="{{productBean.image_list[0]}}" />
 
     <view class='name'>{{productBean.name}}</view>
 
@@ -11,7 +11,7 @@
       <text class="{{item.isSelect ? 'prop_item_positive' : 'prop_item_negative'}}" wx:for="{{prop_item.values}}" wx:key="values" catchtap='clickPropItem' data-prop-Id='{{propIndex}}' data-prop-Item-Id='{{index}}' wx:if="{{item.isCanUse}}">{{item.name}}</text>
     </view>
 
-    <image class='image' wx:key='' wx:for='{{productBean.image_list}}' wx:if='{{index != 0}}' src="{{item}}" catchtap='maxImage' mode="aspectFill" />
+    <image class='image' wx:key='' wx:for='{{productBean.image_list}}' wx:if='{{index != 0}}' src="{{item}}" catchtap='maxImage' mode="aspectFill" data-image-Url="{{item}}" />
   </view>
 </view>
 

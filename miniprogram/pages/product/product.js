@@ -183,14 +183,9 @@ Page({
    * 浏览大图
    */
   maxImage: function(event) {
-    var index = event.currentTarget.dataset.itemIndex
-    var images = [];
-    for (var i = 0; i < this.data.productBean.listImage.length; i++) {
-      images.push(this.data.productBean.listImage[i])
-    }
+    var url = event.currentTarget.dataset.imageUrl
     wx.previewImage({
-      current: images[index],
-      urls: images,
+      urls: [url],
     })
   },
 
