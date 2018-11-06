@@ -296,6 +296,22 @@ Page({
   },
 
   /**
+   * 增加购物车数量
+   */
+  editCartCount : function(e){
+    var index = e.currentTarget.dataset.itemIndex
+    var editType = e.currentTarget.dataset.editType
+    var productBean = this.data.shopCartList[index]
+    var count = productBean.count
+    if ("add" == editType){
+      this.editCartInfo(productBean.sku_id, count + 1, productBean.choosen)
+    } else if ("reduce" == editType){
+      this.editCartInfo(productBean.sku_id, count - 1, productBean.choosen)
+    }
+    
+  },
+
+  /**
    * 编辑购物车
    */
   editCartInfo: function(sku_id, count, choosen) {
