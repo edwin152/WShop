@@ -394,5 +394,14 @@ Page({
         })
       }
     })
+  },
+
+  /**
+   * 进入购物车
+   */
+  intoShopCart: function(){
+    wx.navigateTo({
+      url: '/pages/shopcart/shopcart',
+    })
   }
 })

@@ -7,6 +7,15 @@
   margin-bottom: 150rpx;
 }
 
+.into_shop_cart{
+  background: #FFFFFF;
+  position: fixed;
+  top: 100rpx;
+  right: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+}
+
 .bottom {
   height: 120rpx;
   width: 100%;

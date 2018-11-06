@@ -6,6 +6,7 @@
   margin-top: 30rpx;
   margin-left: 30rpx;
   margin-right: 30rpx;
+  position: relative;
 }
 
 .shop_item_image {
@@ -28,6 +29,32 @@
   font-size: 26rpx;
   text-align: center;
 
+}
+
+.addImage{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  top: 30rpx;
+  left: 30rpx;
+  color: #EFEFEF;
+  /* border: 1px #EFEFEF solid; */
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+
+.deleteImage{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  top: 30rpx;
+  right: 30rpx;
+  color: #EFEFEF;
+  /* border: 1px #EFEFEF solid; */
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 50rpx;
 }
 
 .manage{
