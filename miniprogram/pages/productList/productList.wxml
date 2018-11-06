@@ -1,10 +1,11 @@
 <!--pages/productList/productList.wxml-->
-
-<view class='shop_item' wx:for="{{productList}}" wx:key="productList" catchtap='editProduct' data-index='{{index}}' >
-  <image class='shop_item_image' src='{{item.image_list[0]}}'  mode='aspectFill'></image>
-  <view class='shop_item_name'>{{item.name}}</view>
-  <view class='manage'>
-    <view class='manageStock' data-index='{{index}}' data-product-Id="{{item._id}}" catchtap='deleteProduct' >删除商品</view>
-    <view class='manageStock' catchtap='manageStock' data-index='{{index}}'>库存管理</view>
+<view style='width: 100%;'>
+  <view class='shop_item' wx:for="{{productList}}" wx:key="productList" catchtap='editProduct' data-index='{{index}}'>
+    <image class='shop_item_image' src='{{item.image_list[0]}}' mode='aspectFill'></image>
+    <view class='shop_item_name'>{{item.name}}</view>
+    <view class='manage'>
+      <view class='manageStock' data-index='{{index}}' data-product-Id="{{item._id}}" catchtap='deleteProduct'>删除</view>
+      <view class='manageStock' catchtap='manageStock' data-index='{{index}}'>管理</view>
+    </view>
   </view>
 </view>

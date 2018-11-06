@@ -1,1 +1,41 @@
 /* pages/managesku/managesku.wxss */
+
+.skus_box {
+  margin-left: 5%;
+}
+
+.skus {
+  margin-top: 30rpx;
+}
+
+.info_text {
+  font-size: 30rpx;
+  font-weight: 800;
+  margin-top: 10rpx;
+}
+
+.delete_sku {
+  position: absolute;
+  right: 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #fff;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  background: #000;
+  font-size: 26rpx;
+}
+
+.add_sku {
+  position: fixed;
+  bottom: 10rpx;
+  width: 90%;
+  height: 100rpx;
+  margin-left: 5%;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  background: #000;
+  font-size: 30rpx;
+}

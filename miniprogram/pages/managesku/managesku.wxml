@@ -1,18 +1,15 @@
 <!--pages/managesku/managesku.wxml-->
 <view class='skus_box'>
   <view class='skus' wx:for="{{skus}}" wx:key="skus" catchtap='editSku' data-index="{{index}}">
-    <view class=''>
-      <text wx:for="{{item.prop_value_list}}" wx:key="prop_value_list" wx:for-item="prop">{{prop.name}}</text>
+    <view style='display: inline-block' wx:for="{{item.prop_value_list}}" wx:key="prop_value_list" wx:for-item="prop" wx:for-index='prop_index'>
+      <text class='info_text'>{{prop.name}}</text>
+      <text class='info_text' wx:if='{{prop_index < item.prop_value_list.length - 1}}'>, </text>
     </view>
-    <view>批发价格 : {{item.trade_price}}</view>
-    <view>商品价格 : {{item.retail_price}}</view>
-    <view>库存数量 : {{item.stock_count}}</view>
-    <view class='manage'>
-      <view class='manageStock' data-index='{{index}}' data-product-Id="{{item._id}}" catchtap='deleteSku' data-sku-Id="{{item._id}}">删除规格</view>
-    </view>
+    <view class='info_text'>批发价格 : ￥{{item.trade_price}}</view>
+    <view class='info_text'>商品价格 : ￥{{item.retail_price}}</view>
+    <view class='info_text'>库存数量 : {{item.stock_count}}</view>
+    <view class='delete_sku' catchtap='deleteSku' data-index='{{index}}' data-product-Id="{{item._id}}" data-sku-Id="{{item._id}}">删除</view>
   </view>
 </view>
 
-<view class='bottom_btn'>
-  <view catchtap='addSku' class='bottom_text'>新增</view>
-</view>
+<view class='add_sku' catchtap='addSku'>新增</view>
