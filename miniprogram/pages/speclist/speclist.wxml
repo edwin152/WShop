@@ -3,12 +3,10 @@
   <view class='item_prop' wx:for="{{propList}}" wx:key="propList" wx:for-item="prop" catchtap='editProp' data-item-Id="{{index}}" catchlongtap='deleteProp'>
     <view class='prop_title'>{{prop.name}}</view>
     <view class='prop_value_box'>
-      <text class='prop_value' wx:for="{{prop.values}}" wx:key="values" >{{item.name}} </text>
+      <text class='prop_value' wx:for="{{prop.values}}" wx:key="values">{{item.name}}</text>
     </view>
   </view>
 </view>
 
 
-  <view class='bottom_btn'>
-    <view catchtap='addProp' class='bottom_text'>增加规格</view>
-  </view>
+<view class='add_prop' catchtap='addProp'>增加规格</view>

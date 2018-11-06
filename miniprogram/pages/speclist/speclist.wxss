@@ -1,22 +1,37 @@
 /* pages/speclist/speclist.wxss */
 
-.prop_box{
-margin-bottom: 120rpx;
+.prop_box {
+  width: 100%;
+  margin-bottom: 120rpx;
 }
 
-.item_prop{
-  width: 90%;
-  margin: 0rpx auto;
-  border-bottom: 1px #aeaeae solid;
-  height: 110rpx;
+.item_prop {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
 }
 
-.prop_title{
+.prop_title {
+  margin-top: 30rpx;
   font-size: 36rpx;
+  font-weight: 800;
 }
 
-.prop_value{
+.prop_value {
+  margin-top: 15rpx;
   font-size: 24rpx;
-  color: #AEAEAE;
+  margin-left: 15rpx;
+  color: #aeaeae;
 }
 
+.add_prop {
+  position: fixed;
+  bottom: 10rpx;
+  width: 90%;
+  height: 100rpx;
+  margin-left: 5%;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+  background: #000;
+  font-size: 30rpx;
+}
