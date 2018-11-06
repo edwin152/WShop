@@ -29,7 +29,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.isRegister()
     this.getProductList()
 
@@ -136,7 +136,7 @@ Page({
     wx.getUserInfo({
       withCredentials: true,
       lang: '',
-      success: function (user) {
+      success: function(user) {
         request.baseCloud({
           params: {
             avatar: user.userInfo.avatarUrl,
@@ -144,12 +144,12 @@ Page({
           },
           fun: "user",
           url: "login",
-          onStart: function () {
+          onStart: function() {
             wx.showLoading({
               title: '',
             })
           },
-          onSuccess: function (res) {
+          onSuccess: function(res) {
             wx.showToast({
               title: '登录成功',
               icon: "none"
@@ -158,13 +158,13 @@ Page({
               loginDialog: false
             })
           },
-          onError: function (res) {
+          onError: function(res) {
             console.log(res)
             wx.showToast({
               title: '登录失败',
             })
           },
-          onComplete: function () {
+          onComplete: function() {
             wx.hideLoading()
           }
         })
@@ -190,11 +190,11 @@ Page({
       }
     })
   },
-  
+
   /**
    * 订单列表
    */
-  leftButton: function(e){
+  leftButton: function(e) {
     wx.navigateTo({
       url: '/pages/orderlist/orderlist',
     })
@@ -203,16 +203,41 @@ Page({
   /**
    * 设置
    */
-  titleButton: function (e) {
-    wx.navigateTo({
-      url: '/pages/setting/setting',
+  titleButton: function(e) {
+    let thisPage = this
+    request.baseCloud({
+      params: {},
+      fun: "user",
+      url: "isManager",
+      onStart: function() {
+        wx.showLoading({
+          title: '',
+        })
+      },
+      onSuccess: function(res) {
+        if (res.data){
+          wx.navigateTo({
+            url: '/pages/setting/setting',
+          })
+        }
+      },
+      onError: function(res) {
+        console.log(res)
+        wx.showToast({
+          title: '请求失败请重试',
+        })
+      },
+      onComplete: function() {
+        wx.hideLoading()
+      }
     })
+
   },
 
   /**
    * 订单列表
    */
-  rightButton: function (e) {
+  rightButton: function(e) {
     wx.navigateTo({
       url: '/pages/shopcart/shopcart',
     })
