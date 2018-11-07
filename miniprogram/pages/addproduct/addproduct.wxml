@@ -14,7 +14,7 @@
 
   <view class='title'>商品名称</view>
 
-    <input class='input_name' placeholder="请输入商品名称" bindinput='inputName' />
+  <input class='input_name' placeholder="请输入商品名称" bindinput='inputName' />
 
   <view class='title'>商品规格</view>
 

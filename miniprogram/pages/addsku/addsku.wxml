@@ -1,34 +1,21 @@
 <!--pages/addsku/addsku.wxml-->
 <form bindsubmit='saveProductInfo'>
-  <view class='title'>商品规格</view>
   <view wx:for="{{props}}" wx:key="propList" wx:for-item="prop_item" wx:for-index="propIndex" class='prop_box'>
-    <view class="prop_select">{{prop_item.name}}</view>
-    <view class='prop_item_box'>
-      <view wx:for="{{prop_item.values}}" class="{{item.isSelect ? 'prop_item_select' : 'prop_item_none'}}" wx:key="values" catchtap='clickPropItem' data-prop-Id='{{propIndex}}' data-prop-Item-Id='{{index}}'>{{item.name}}</view>
-    </view>
-    <view class='line'></view>
+    <view class="title">{{prop_item.name}}</view>
 
-
+    <view wx:for="{{prop_item.values}}" class="{{item.isSelect ? 'prop_select' : 'prop_none'}}" wx:key="values" catchtap='clickPropItem' data-prop-Id='{{propIndex}}' data-prop-Item-Id='{{index}}'>{{item.name}}</view>
   </view>
 
-  <view class='stock_info_box' wx:if="{{isSelectComplete}}">
-    <view class='title'>商品信息</view>
-    <view class='input_box'>
-      <view class='input_title'>批发价格</view>
-      <input class='input' name="tradePrice"></input>
-    </view>
-    <view class='input_box'>
-      <view class='input_title'>商品价格</view>
-      <input class='input' name="retailPrice"></input>
-    </view>
-    <view class='input_box'>
-      <view class='input_title'>库存数量</view>
-      <input class='input' name="stockCount"></input>
-    </view>
-    <view class='bottom_btn'>
-      <button catchtap='submit' form-type='submit' class='bottom_text'>保存</button>
-    </view>
-  </view>
+  <block wx:if="{{isSelectComplete}}">
+    <view class='title'>批发价格</view>
+    <input class='input_name' name="tradePrice" placeholder='请输入批发价格' />
 
+    <view class='title'>商品价格</view>
+    <input class='input_name' name="retailPrice" placeholder='请输入商品价格' />
 
+    <view class='title'>库存数量</view>
+    <input class='input_name' name="stockCount" placeholder='请输入库存数量' />
+
+    <button catchtap='submit' form-type='submit' class='save'>保存</button>
+  </block>
 </form>

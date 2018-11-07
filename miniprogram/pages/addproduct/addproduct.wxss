@@ -14,6 +14,30 @@
   height: 500rpx;
 }
 
+.addImage {
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  top: 30rpx;
+  left: 30rpx;
+  color: #efefef;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+
+.deleteImage {
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  top: 30rpx;
+  right: 30rpx;
+  color: #efefef;
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 50rpx;
+}
+
 .title {
   margin-left: 30rpx;
   margin-top: 30rpx;
@@ -72,28 +96,4 @@
   color: #fff;
   background: #000;
   font-size: 30rpx;
-}
-
-.addImage {
-  position: absolute;
-  width: 50rpx;
-  height: 50rpx;
-  top: 30rpx;
-  left: 30rpx;
-  color: #efefef;
-  border-radius: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-}
-
-.deleteImage {
-  position: absolute;
-  width: 50rpx;
-  height: 50rpx;
-  top: 30rpx;
-  right: 30rpx;
-  color: #efefef;
-  text-align: center;
-  line-height: 50rpx;
-  border-radius: 50rpx;
 }
