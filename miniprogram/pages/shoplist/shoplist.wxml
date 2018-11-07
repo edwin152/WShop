@@ -1,9 +1,9 @@
 <!--pages/shoplist/shoplist.wxml-->
 <view>
   <view class='search_box'>
-    <image class='title_left' src='/images/icon_search.png' catchtap='leftButton' />
+    <image class='title_left' src='/images/icon_order.png' catchtap='leftButton' />
     <view class='title_text' catchtap='titleButton'>拔萃织物</view>
-    <image class='title_right' src='/images/icon_search.png'catchtap='rightButton'  />
+    <image class='title_right' src='/images/icon_cart.png'catchtap='rightButton'  />
   </view>
   <view class='shop_list_box'>
     <view class='gone_line'></view>

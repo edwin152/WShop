@@ -1,7 +1,9 @@
 <!--pages/product/product.wxml-->
 <view style='width: 100%;'>
   <view class='root'>
-    <image class="into_shop_cart" catchtap='intoShopCart' src='/images/icon_search.png' />
+    <view class='into_shop_cart'>
+      <image catchtap='intoShopCart' src='/images/icon_cart.png' />
+    </view>
     <image class='image' src="{{productBean.image_list[0]}}" catchtap='maxImage' mode="aspectFill" data-image-Url="{{productBean.image_list[0]}}" />
 
     <view class='name'>{{productBean.name}}</view>

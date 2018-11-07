@@ -1,36 +1,26 @@
 <!--pages/addproduct/addproduct.wxml-->
-<view>
-  <view class='title'>商品图片</view>
+<view style='width: 100%'>
   <view class='upload_image_box'>
-    <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}"  current="{{swiperIndex}}" bindchange="changeImageIndex">
+    <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}" current="{{swiperIndex}}" bindchange="changeImageIndex">
       <swiper-item wx:for="{{imagesList}}" wx:key="imagesList">
         <image class='product_image' src="{{item}}" mode='aspectFit'></image>
       </swiper-item>
     </swiper>
-    <image class="addImage" catchtap='uploadProductImage' src="/images/icon_search.png" />
-    <image class='deleteImage' src="/images/icon_search.png" catchtap='deleteImage' />
-  </view>
 
-  <view class='line'></view>
+    <image class="addImage" catchtap='uploadProductImage' src="/images/icon_add.png" />
+
+    <image class='deleteImage' src="/images/icon_cancel.png" catchtap='deleteImage' />
+  </view>
 
   <view class='title'>商品名称</view>
-  <view class='product_name'>
-    <input class='input_name' placeholder="请输入商品名称" bindinput='inputName'></input>
-  </view>
 
-  <view class='line'></view>
+    <input class='input_name' placeholder="请输入商品名称" bindinput='inputName' />
+
   <view class='title'>商品规格</view>
-  <view wx:for="{{propList}}" wx:key="propList" wx:for-item="prop_item" wx:for-index="propIndex" class='prop_box'>
-    <view class="{{prop_item.isSelect ? 'prop_select' : 'prop_none'}}" catchtap='clickProp' data-prop-Id="{{propIndex}}">{{prop_item.name}}</view>
-    <!-- <view class='prop_item_box'>
-      <view class="{{item.isSelect ? 'prop_item_select' : 'prop_item_none'}}" wx:for="{{prop.values}}" wx:key="values" catchtap='clickPropItem'>{{item.name}}</view>
-    </view> -->
-    <view class='line'></view>
-  </view>
 
-  <view class='emty_view'></view>
+  <view class="{{item.isSelect ? 'prop_select' : 'prop_none'}}" wx:for="{{propList}}" wx:key="" catchtap='clickProp' data-prop-Id="{{index}}">{{item.name}}</view>
+
+  <view class='emty_view' />
 </view>
 
-<view class='bottom_btn'>
-  <view catchtap='submit' class='bottom_text'>保存</view>
-</view>
+<view catchtap='submit' class='save'>保存</view>

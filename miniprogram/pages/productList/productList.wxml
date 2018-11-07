@@ -8,8 +8,8 @@
         <image class='shop_item_image' src='{{imageItem}}' mode='aspectFill'></image>
       </swiper-item>
     </swiper>
-    <image class="addImage" src="/images/icon_search.png" catchtap='addImage' data-product-Index="{{productIndex}}"/>
-    <image class='deleteImage' src="/images/icon_search.png" catchtap='deleteImage' data-product-Index="{{productIndex}}"/>
+    <image class="addImage" src="/images/icon_add.png" catchtap='addImage' data-product-Index="{{productIndex}}"/>
+    <image class='deleteImage' src="/images/icon_cancel.png" catchtap='deleteImage' data-product-Index="{{productIndex}}"/>
     <view class='shop_item_name'>{{item.name}}</view>
     <view class='manage'>
       <view class='manageStock' data-index='{{productIndex}}' data-product-Id="{{item._id}}" catchtap='deleteProduct'>删除</view>

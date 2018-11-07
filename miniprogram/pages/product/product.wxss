@@ -7,13 +7,21 @@
   margin-bottom: 150rpx;
 }
 
-.into_shop_cart{
-  background: #FFFFFF;
+.into_shop_cart {
+  background: #fff;
   position: fixed;
-  top: 100rpx;
+  top: 50rpx;
   right: 50rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 75rpx;
+  height: 75rpx;
+  border-radius: 200rpx;
+}
+
+.into_shop_cart image {
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  width: 55rpx;
+  height: 55rpx;
 }
 
 .bottom {
