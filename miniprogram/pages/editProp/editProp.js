@@ -109,13 +109,13 @@ Page({
    * 保存规格
    */
   saveTitle: function(e) {
-    if (e.detail.value.title.length <= 0) {
-      wx.showToast({
-        title: '没有修改',
-        icon: "none"
-      })
-      reutrn
-    }
+    // if (e.detail.value.title.length <= 0) {
+    //   wx.showToast({
+    //     title: '没有修改',
+    //     icon: "none"
+    //   })
+    //   reutrn
+    // }
     if (pageType == 1) {
       this.addProp(e.detail.value.title)
     } else {

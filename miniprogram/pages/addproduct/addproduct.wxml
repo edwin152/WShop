@@ -1,9 +1,9 @@
 <!--pages/addproduct/addproduct.wxml-->
 <view style='width: 100%'>
   <view class='upload_image_box'>
-    <swiper indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}" current="{{swiperIndex}}" bindchange="changeImageIndex">
+    <swiper  style="background: #EFEFEF;height: 500rpx;" indicator-dots="true" class='images_box' wx:if="{{imagesList.length > 0}}" current="{{swiperIndex}}" bindchange="changeImageIndex">
       <swiper-item wx:for="{{imagesList}}" wx:key="imagesList">
-        <image class='product_image' src="{{item}}" mode='aspectFit'></image>
+        <image class='product_image' src="{{item}}" mode='aspectFill'></image>
       </swiper-item>
     </swiper>
 
