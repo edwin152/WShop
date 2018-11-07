@@ -33,7 +33,7 @@
 				{
 					"id": 0,
 					"name": "db guide",
-					"pathName": "pages/orderlist/orderlist",
+					"pathName": "pages/productList/productList",
 					"query": ""
 				}
 			]
