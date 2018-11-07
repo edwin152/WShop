@@ -46,10 +46,12 @@ text {
 
 button::after {
   border: none;
+  border-radius: 0rpx;
 }
 
 button{
   background: #FFF;
+  border-radius: 0rpx;
 }
 
 .login_dialog_backgound {
