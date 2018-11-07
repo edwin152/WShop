@@ -1,5 +1,6 @@
 // pages/addproduct/addproduct.js
 var request = require("../../utils/request.js")
+var imageIndex = -1
 Page({
 
   /**
@@ -10,7 +11,8 @@ Page({
     propList: [],
     selectPropIdList: [],
     productName: "",
-    images: []
+    images: [],
+    swiperIndex: 0,
   },
 
   /**
@@ -181,6 +183,13 @@ Page({
       }
     })
   },
+  /**
+   * 滑动图片
+   */
+  changeImageIndex: function (e) {
+    // console.log(e)
+    imageIndex = e.detail.current
+  },
 
   /**
    * 上传图片
@@ -231,4 +240,16 @@ Page({
     })
 
   },
+
+  /**
+   * 删除图片
+   */
+  deleteImage: function(e){
+    var imageList = this.data.imagesList
+    imageList.splice(imageIndex, 1)
+    this.setData({
+      imagesList: imageList,
+      swiperIndex: 0
+    })
+  }
 })
