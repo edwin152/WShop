@@ -210,9 +210,6 @@ Page({
       fun: "user",
       url: "isManager",
       onStart: function() {
-        wx.showLoading({
-          title: '',
-        })
       },
       onSuccess: function(res) {
         if (res.data){
@@ -228,7 +225,6 @@ Page({
         })
       },
       onComplete: function() {
-        wx.hideLoading()
       }
     })
 

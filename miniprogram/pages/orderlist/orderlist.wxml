@@ -13,6 +13,7 @@
     <view>
       <text class='key_msg'>订单编号：</text>
       <text class='value_msg'>{{item._id}}</text>
+      <text class='copy' bindtap='copyOrderId' data-order_id='item_id'>复 制</text>
     </view>
 
     <view>

@@ -16,6 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.hideShareMenu()
     var productStr = options.product
     var product = JSON.parse(productStr)
     var isHave = false
@@ -192,6 +193,9 @@ Page({
         wx.showToast({
           title: '增加成功',
           icon: "none"
+        })
+        wx.navigateBack({
+
         })
       },
       onError: function(res) {

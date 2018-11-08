@@ -10,6 +10,7 @@ Page({
     imagesList: [],
     propList: [],
     selectPropIdList: [],
+    productDescribe:'',
     productName: "",
     images: [],
     swiperIndex: 0,
@@ -19,6 +20,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.hideShareMenu()
     this.getPropAll()
   },
 
@@ -77,6 +79,15 @@ Page({
   inputName: function(e) {
     this.setData({
       productName: e.detail.value
+    })
+  },
+
+  /**
+   * 输入商品名称
+   */
+  inputDescribe: function(e) {
+    this.setData({
+      productDescribe: e.detail.value
     })
   },
 
@@ -152,6 +163,7 @@ Page({
       params: {
         prop_list: selectList,
         name: thisPage.data.productName,
+        describe: thisPage.data.productDescribe,
         image_list: thisPage.data.imagesList
       },
       fun: "product",

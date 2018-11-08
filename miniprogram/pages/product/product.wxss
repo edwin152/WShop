@@ -18,10 +18,10 @@
 }
 
 .into_shop_cart image {
-  margin-left: 10rpx;
-  margin-top: 10rpx;
-  width: 55rpx;
-  height: 55rpx;
+  margin-left: 15rpx;
+  margin-top: 20rpx;
+  width: 45rpx;
+  height: 45rpx;
 }
 
 .bottom {
@@ -39,14 +39,24 @@
   height: 90vh;
   width: 100%;
   background: #eee;
+  margin-top: 30rpx;
 }
 
 .name {
   font-size: 30rpx;
   width: 75vw;
   font-weight: 800;
-  margin: 60rpx auto 0rpx;
+  margin: 30rpx auto 0rpx;
   color: #000;
+  text-align: center;
+}
+
+.describe {
+  font-size: 30rpx;
+  width: 75vw;
+  font-weight: 800;
+  margin: 15rpx auto 0rpx;
+  color: #444;
   text-align: center;
 }
 

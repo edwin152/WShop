@@ -16,6 +16,10 @@
 
   <input class='input_name' placeholder="请输入商品名称" bindinput='inputName' />
 
+  <view class='title'>商品描述</view>
+
+  <input class='input_describe' placeholder="请输入商品描述" bindinput='inputDescribe' />
+
   <view class='title'>商品规格</view>
 
   <view class="{{item.isSelect ? 'prop_select' : 'prop_none'}}" wx:for="{{propList}}" wx:key="" catchtap='clickProp' data-prop-Id="{{index}}">{{item.name}}</view>

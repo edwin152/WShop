@@ -80,6 +80,12 @@
   margin-left: 60rpx;
 }
 
+.input_describe {
+  line-height: 90rpx;
+  font-size: 36rpx;
+  margin-left: 60rpx;
+}
+
 .emty_view {
   width: 100%;
   height: 200rpx;

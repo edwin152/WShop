@@ -13,7 +13,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    wx.hideShareMenu()
     this.getProductList()
   },
 
@@ -86,6 +87,10 @@ Page({
       },
       onError: function(res) {
         console.log(res.msg)
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
       },
       onComplete: function() {
         wx.hideLoading()
@@ -140,6 +145,10 @@ Page({
             },
             onError: function(res) {
               console.log(res.msg)
+              wx.showToast({
+                title: res.msg,
+                icon: 'none'
+              })
             },
             onComplete: function() {
               wx.hideLoading()

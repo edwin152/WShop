@@ -1,7 +1,7 @@
 <!--pages/shopcart/shopcart.wxml-->
 <view class='root'>
   <view class='cart_item' wx:key='shopCartList' wx:for="{{shopCartList}}">
-    <image class="select" src="{{item.choosen ? '/images/icon_check.png' : ''}}" catchtap='selectProduct' data-index="{{index}}" data-select="{{item.choosen}}" />
+    <image class="select" src="{{item.choosen ? '/images/check_positive.png' : '/images/check_negative.png'}}" catchtap='selectProduct' data-index="{{index}}" data-select="{{item.choosen}}" />
 
     <image class='image' src='{{item.image_list[0]}}' mode="aspectFill" />
 
@@ -10,6 +10,9 @@
 
       <view class='norms'>{{item.prop_value_str}}</view>
 
+    </view>
+
+    <view class='layout2'>
       <image class='delete' src='/images/icon_cancel.png' catchtap='deleteProduct' data-index="{{index}}" />
 
       <view class='count_layout'>

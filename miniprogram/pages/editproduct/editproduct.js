@@ -12,7 +12,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
+    wx.hideShareMenu()
     var productStr = options.product
     var productBean = JSON.parse(productStr)
     this.setData({

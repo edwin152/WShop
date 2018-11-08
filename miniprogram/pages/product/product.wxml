@@ -2,11 +2,13 @@
 <view style='width: 100%;'>
   <view class='root'>
     <view class='into_shop_cart'>
-      <image catchtap='intoShopCart' src='/images/icon_cart.png' />
+      <image catchtap='intoShopCart' src='/images/icon_shop_cart.png' />
     </view>
     <image class='image' src="{{productBean.image_list[0]}}" catchtap='maxImage' mode="aspectFill" data-image-Url="{{productBean.image_list[0]}}" />
 
     <view class='name'>{{productBean.name}}</view>
+
+    <view class='describe'>{{productBean.describe}}</view>
 
     <view wx:for="{{productBean.prop_list}}" wx:key="propList" wx:for-item="prop_item" wx:for-index="propIndex">
       <view class="prop_title">{{prop_item.name}}</view>

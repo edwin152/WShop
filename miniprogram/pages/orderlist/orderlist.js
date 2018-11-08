@@ -13,6 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu()
   },
 
   /**
@@ -96,6 +97,13 @@ Page({
     })
   },
 
+  copyOrderId: function(e) {
+    console.log(e)
+    let orderId = e.currentTarget.dataset.order_id
+    wx.setClipboardData({
+      data: orderId,
+    })
+  },
 
   /**
    * 用户登录
